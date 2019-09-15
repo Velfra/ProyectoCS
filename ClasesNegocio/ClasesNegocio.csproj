@@ -48,6 +48,7 @@
     <Compile Include="Productos_Juguetes.cs" />
     <Compile Include="Productos_Limpieza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
