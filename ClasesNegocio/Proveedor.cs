@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClasesNegocio
 {
-    class Proveedor
+    public class Proveedor
     {
+        public string NombreProveedor { get; set; }
+        public DateTime FechaEntrega { get; set; }
+
+
+        public Proveedor () { }
     }
 }
