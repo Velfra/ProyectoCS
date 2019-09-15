@@ -10,6 +10,7 @@ namespace ClasesNegocio
     {
         public string Descripcion { get; set; }
         public string Marca { get; set; }
+        public DateTime Fecha_Elaboracion { get; set; }
         public DateTime Fecha_Vencimiento { get; set; }
     }
 }
