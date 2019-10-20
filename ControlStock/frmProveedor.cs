@@ -162,18 +162,18 @@ namespace ControlStock
             }
         }
 
-        private void lstProveedor_Click(object sender, EventArgs e)
-        {
-            Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+        //private void lstProveedor_Click(object sender, EventArgs e)
+        //{
+        //    Proveedor p = (Proveedor)lstProveedor.SelectedItem;
 
-            if (p != null)
-            {
-                txtTelefono.Text = p.Telefono;
-                txtDireccion.Text = p.Direccion;
-                txtMail.Text = p.Email;
-                txtNombreProveedor.Text = p.NombreProveedor;
-            }
-        }
+        //    if (p != null)
+        //    {
+        //        txtTelefono.Text = p.Telefono;
+        //        txtDireccion.Text = p.Direccion;
+        //        txtMail.Text = p.Email;
+        //        txtNombreProveedor.Text = p.NombreProveedor;
+        //    }
+        //}
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -184,6 +184,21 @@ namespace ControlStock
         {
             LimpiarFormulario();
             BloquearFormulario();
+        }
+
+        private void lstProveedor_DoubleClick(object sender, EventArgs e)
+        {
+            Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+
+            if (p != null)
+            {
+                txtTelefono.Text = p.Telefono;
+                txtDireccion.Text = p.Direccion;
+                txtMail.Text = p.Email;
+                txtNombreProveedor.Text = p.NombreProveedor;
+            } 
+
+            tbcPrincipal.SelectedIndex = 0;
         }
     }
 }
