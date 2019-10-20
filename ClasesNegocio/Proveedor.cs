@@ -8,8 +8,7 @@ namespace ClasesNegocio
 {
     public class Proveedor
     {
-        public string NombreProveedor { get; set; }
-        public DateTime FechaEntrega { get; set; }
+        
 
 
         public Proveedor () { }
