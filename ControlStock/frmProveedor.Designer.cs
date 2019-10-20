@@ -34,17 +34,17 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lstProveedor = new System.Windows.Forms.ListBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.lstProveedor = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -97,12 +97,12 @@
             this.lblTelefono.TabIndex = 4;
             this.lblTelefono.Text = "Telefono";
             // 
-            // textBox3
+            // txtMail
             // 
-            this.textBox3.Location = new System.Drawing.Point(96, 203);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 22);
-            this.textBox3.TabIndex = 7;
+            this.txtMail.Location = new System.Drawing.Point(96, 203);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(194, 22);
+            this.txtMail.TabIndex = 7;
             // 
             // lblMail
             // 
@@ -118,7 +118,7 @@
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.txtMail);
             this.groupBox1.Controls.Add(this.lblMail);
             this.groupBox1.Controls.Add(this.txtTelefono);
             this.groupBox1.Controls.Add(this.lblTelefono);
@@ -133,14 +133,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Proveedor";
             // 
-            // btnGuardar
+            // btnCancelar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(366, 74);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(81, 35);
-            this.btnGuardar.TabIndex = 8;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(366, 185);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(81, 35);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnLimpiar
             // 
@@ -150,15 +151,17 @@
             this.btnLimpiar.TabIndex = 9;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // btnCancelar
+            // btnGuardar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(366, 185);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(81, 35);
-            this.btnCancelar.TabIndex = 10;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Location = new System.Drawing.Point(366, 74);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(81, 35);
+            this.btnGuardar.TabIndex = 8;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // groupBox2
             // 
@@ -172,16 +175,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Procesos";
             // 
-            // lstProveedor
-            // 
-            this.lstProveedor.FormattingEnabled = true;
-            this.lstProveedor.ItemHeight = 16;
-            this.lstProveedor.Location = new System.Drawing.Point(224, 322);
-            this.lstProveedor.Margin = new System.Windows.Forms.Padding(4);
-            this.lstProveedor.Name = "lstProveedor";
-            this.lstProveedor.Size = new System.Drawing.Size(279, 276);
-            this.lstProveedor.TabIndex = 12;
-            // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(44, 134);
@@ -190,6 +183,7 @@
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -199,6 +193,7 @@
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnAgregar
             // 
@@ -208,6 +203,18 @@
             this.btnAgregar.TabIndex = 11;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // lstProveedor
+            // 
+            this.lstProveedor.FormattingEnabled = true;
+            this.lstProveedor.ItemHeight = 16;
+            this.lstProveedor.Location = new System.Drawing.Point(224, 322);
+            this.lstProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.lstProveedor.Name = "lstProveedor";
+            this.lstProveedor.Size = new System.Drawing.Size(279, 276);
+            this.lstProveedor.TabIndex = 12;
+            this.lstProveedor.Click += new System.EventHandler(this.lstProveedor_Click);
             // 
             // frmProveedor
             // 
@@ -220,6 +227,7 @@
             this.Name = "frmProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedor";
+            this.Load += new System.EventHandler(this.frmProveedor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -235,7 +243,7 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCancelar;

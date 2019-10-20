@@ -62,5 +62,11 @@
       <DependentUpon>frmProveedor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClasesNegocio\ClasesNegocio.csproj">
+      <Project>{25C120CB-97BD-4A36-B024-410F60E50E52}</Project>
+      <Name>ClasesNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
