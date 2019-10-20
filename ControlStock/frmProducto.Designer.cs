@@ -311,7 +311,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmProducto";
+            this.Text = "Productos";
             this.Load += new System.EventHandler(this.frmProducto_Load);
             this.tbcProducto.ResumeLayout(false);
             this.tbpProducto.ResumeLayout(false);
