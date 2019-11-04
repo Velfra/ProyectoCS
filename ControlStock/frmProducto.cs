@@ -174,6 +174,9 @@ namespace ControlStock
         private void frmProducto_Load(object sender, EventArgs e)
         {
             ActualizarListaProductos();
+            cboProveedor.DataSource = Proveedor.ObtenerProveedores();
+            cboCategoria.SelectedItem = null;
+            cboProveedor.SelectedItem = null;
             BloquearFormulario();
         }
 
