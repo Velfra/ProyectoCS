@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,39 +10,144 @@ namespace ClasesNegocio
 {
     public class Producto
     {
-        public string Nombre_Producto { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
         public int Cantidad { get; set; }
-        public Categoria categoria { get; set; }
-        public double Precio_Costo { get; set; }
-        public Proveedor proveedor { get; set; }
+        public Categoria Categoria { get; set; }
+        public double PrecioCompra { get; set; }
+        public Proveedor Proveedor { get; set; }
+        public List<string> DiasEntrega { get; set; }
 
         public static List<Producto> listaProducto = new List<Producto>();
-
-        public static List<Producto> ObtenerProducto()
-        {
-            return listaProducto;
-        }
-
 
 
         public static void AgregarProducto(Producto p)
         {
-            listaProducto.Add(p);
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string textoCmd = "insert into Producto (Nombre, Cantidad, Categoria, PrecioCompra, Proveedor, DiasEntrega) VALUES (@Nombre, @Cantiodad, @Categoria, @PrecioCompra, @Proveedor, @DiasEntrega)";
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                cmd = p.ObtenerParametros(cmd);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void EliminarProducto(Producto p)
         {
-            listaProducto.Remove(p);
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string SENTENCIA_SQL = "delete from Producto where Id = @Id";
+
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p5 = new SqlParameter("@Id", p.Id);
+                p5.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p5);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void EditarProducto(Producto p, int indice)
         {
 
-            Producto.listaProducto[indice] = p;
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCMD = "UPDATE Producto SET Nombre = @Nombre, Cantidad = @Cantidad, Categoria = @Categoria, PrecioCompra = @PrecioCompra, Proveedor = @proveedor, DiasEntrega = @DiasEntrega where Id = @Id";
+
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                cmd = p.ObtenerParametros(cmd, true);
+                cmd.ExecuteNonQuery();
+
+            }
         }
+
         public override string ToString()
         {
-            return this.Nombre_Producto;
+            return this.Nombre;
         }
+
+        public static List<Producto> ObtenerProductos()
+        {
+            Producto producto;
+           
+            listaProducto.Clear();
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCMD = "Select * from Producto";
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                while (elLectorDeDatos.Read())
+                {
+                    producto = new Producto();
+                    producto.Id = elLectorDeDatos.GetInt32(0);
+                    producto.Nombre = elLectorDeDatos.GetString(1);
+                    producto.Cantidad = elLectorDeDatos.GetInt32(2);
+                    producto.Categoria = Categoria.ObtenerCategoria(elLectorDeDatos.GetInt32(3));
+                    producto.PrecioCompra = elLectorDeDatos.GetDouble(4);
+                    producto.Proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(5));
+                    producto.DiasEntrega = ObtenerListaDiasEntrega(elLectorDeDatos.GetString(6));
+                    listaProducto.Add(producto);
+                }
+                return listaProducto;
+            }
+        }
+
+        private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
+
+        {
+            SqlParameter p1 = new SqlParameter("@Nombre", this.Nombre);
+            SqlParameter p2 = new SqlParameter("@Cantidad", this.Cantidad);
+            SqlParameter p3 = new SqlParameter("@Categoria", this.Categoria.Id);
+            SqlParameter p4 = new SqlParameter("@PrecioCompra", this.PrecioCompra);
+            SqlParameter p5 = new SqlParameter("@Proveedor", this.Proveedor.Id);
+            SqlParameter p6 = new SqlParameter("@DiasEntrega", this.obtenerStringDiasEntrega());
+
+            p1.SqlDbType = SqlDbType.VarChar;
+            p2.SqlDbType = SqlDbType.Int;
+            p3.SqlDbType = SqlDbType.Int;
+            p4.SqlDbType = SqlDbType.Float;
+            p5.SqlDbType = SqlDbType.Int;
+            p6.SqlDbType = SqlDbType.VarChar;
+
+            cmd.Parameters.Add(p1);
+            cmd.Parameters.Add(p2);
+            cmd.Parameters.Add(p3);
+            cmd.Parameters.Add(p4);
+            cmd.Parameters.Add(p5);
+            cmd.Parameters.Add(p6);
+
+            if (id == true)
+            {
+                cmd = ObtenerParametrosId(cmd);
+            }
+            return cmd;
+        }
+
+        private string obtenerStringDiasEntrega()
+        {
+            return string.Join(",", this.DiasEntrega);
+        }
+
+        private static List<string> ObtenerListaDiasEntrega(string dias)
+        {
+            return dias.Split(',').ToList();
+        }
+
+        private SqlCommand ObtenerParametrosId(SqlCommand cmd)
+        {
+
+            SqlParameter p9 = new SqlParameter("@id", this.Id);
+            p9.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p9);
+            return cmd;
+        }
+
     }
 }
