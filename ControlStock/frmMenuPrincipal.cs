@@ -33,5 +33,11 @@ namespace ControlStock
         {
             this.Close();
         }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategoria frmCateg = new frmCategoria();
+            frmCateg.Show();
+        }
     }
 }

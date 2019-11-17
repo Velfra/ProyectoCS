@@ -64,7 +64,7 @@
             this.tbcProducto.Controls.Add(this.tbpProducto);
             this.tbcProducto.Controls.Add(this.tbpMantenimientoProducto);
             this.tbcProducto.Location = new System.Drawing.Point(0, 1);
-            this.tbcProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbcProducto.Margin = new System.Windows.Forms.Padding(4);
             this.tbcProducto.Name = "tbcProducto";
             this.tbcProducto.SelectedIndex = 0;
             this.tbcProducto.Size = new System.Drawing.Size(659, 457);
@@ -75,9 +75,9 @@
             this.tbpProducto.Controls.Add(this.groupBox2);
             this.tbpProducto.Controls.Add(this.groupBox1);
             this.tbpProducto.Location = new System.Drawing.Point(4, 25);
-            this.tbpProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpProducto.Margin = new System.Windows.Forms.Padding(4);
             this.tbpProducto.Name = "tbpProducto";
-            this.tbpProducto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpProducto.Padding = new System.Windows.Forms.Padding(4);
             this.tbpProducto.Size = new System.Drawing.Size(651, 428);
             this.tbpProducto.TabIndex = 0;
             this.tbpProducto.Text = "Productos";
@@ -89,9 +89,9 @@
             this.groupBox2.Controls.Add(this.btnModificar);
             this.groupBox2.Controls.Add(this.btnAgregar);
             this.groupBox2.Location = new System.Drawing.Point(61, 295);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(555, 86);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
@@ -146,9 +146,9 @@
             this.groupBox1.Controls.Add(this.cboCategoria);
             this.groupBox1.Controls.Add(this.lblCantidad);
             this.groupBox1.Location = new System.Drawing.Point(61, 22);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(555, 251);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
@@ -157,7 +157,12 @@
             // nudPrecioCosto
             // 
             this.nudPrecioCosto.Location = new System.Drawing.Point(125, 158);
-            this.nudPrecioCosto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudPrecioCosto.Margin = new System.Windows.Forms.Padding(4);
+            this.nudPrecioCosto.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.nudPrecioCosto.Name = "nudPrecioCosto";
             this.nudPrecioCosto.Size = new System.Drawing.Size(161, 22);
             this.nudPrecioCosto.TabIndex = 16;
@@ -176,7 +181,7 @@
             // 
             this.cboProveedor.FormattingEnabled = true;
             this.cboProveedor.Location = new System.Drawing.Point(125, 199);
-            this.cboProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.cboProveedor.Name = "cboProveedor";
             this.cboProveedor.Size = new System.Drawing.Size(244, 24);
             this.cboProveedor.TabIndex = 15;
@@ -217,7 +222,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(125, 23);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(244, 22);
             this.txtNombre.TabIndex = 1;
@@ -255,7 +260,7 @@
             // nudCantidad
             // 
             this.nudCantidad.Location = new System.Drawing.Point(125, 113);
-            this.nudCantidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(91, 22);
             this.nudCantidad.TabIndex = 6;
@@ -264,7 +269,7 @@
             // 
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(125, 60);
-            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(244, 24);
             this.cboCategoria.TabIndex = 4;
@@ -283,9 +288,9 @@
             // 
             this.tbpMantenimientoProducto.Controls.Add(this.lstProducto);
             this.tbpMantenimientoProducto.Location = new System.Drawing.Point(4, 25);
-            this.tbpMantenimientoProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpMantenimientoProducto.Margin = new System.Windows.Forms.Padding(4);
             this.tbpMantenimientoProducto.Name = "tbpMantenimientoProducto";
-            this.tbpMantenimientoProducto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpMantenimientoProducto.Padding = new System.Windows.Forms.Padding(4);
             this.tbpMantenimientoProducto.Size = new System.Drawing.Size(651, 428);
             this.tbpMantenimientoProducto.TabIndex = 1;
             this.tbpMantenimientoProducto.Text = "Mantenimiento";
@@ -296,7 +301,7 @@
             this.lstProducto.FormattingEnabled = true;
             this.lstProducto.ItemHeight = 16;
             this.lstProducto.Location = new System.Drawing.Point(1, 4);
-            this.lstProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstProducto.Margin = new System.Windows.Forms.Padding(4);
             this.lstProducto.Name = "lstProducto";
             this.lstProducto.Size = new System.Drawing.Size(643, 420);
             this.lstProducto.TabIndex = 0;
@@ -308,7 +313,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 454);
             this.Controls.Add(this.tbcProducto);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";

@@ -11,9 +11,9 @@ namespace ClasesNegocio
    public class Categoria
     {
         public int Id { get; set; }
-        public int Codigo { get; set; }
+        //public int Codigo { get; set; }
         public string Nombre { get; set; }
-        public string Rubro { get; set; }
+        //public string Rubro { get; set; }
         public string Descripcion { get; set; }
 
         public static List<Categoria> listaCategoria = new List<Categoria>();
@@ -25,7 +25,7 @@ namespace ClasesNegocio
 
             {
                 con.Open();
-                string textoCmd = "insert into Categoria (Codido, Nombre, Rubro, Descripcion) VALUES (@Codigo, @Nombre, @Rubro, @Descripcion)";
+                string textoCmd = "insert into Categoria (Nombre,Descripcion) VALUES (@Nombre, @Descripcion)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = c.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -55,7 +55,7 @@ namespace ClasesNegocio
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Categoria SET Codigo = @Codigo, Nombre = @Nombre, Rubro = @Rubro, Descripcion = @Descripcion where Id = @Id";
+                string textoCMD = "UPDATE Categoria SET Nombre = @Nombre, Descripcion = @Descripcion where Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = c.ObtenerParametros(cmd, true);
@@ -84,10 +84,12 @@ namespace ClasesNegocio
                 {
                     categoria = new Categoria();
                     categoria.Id = elLectorDeDatos.GetInt32(0);
-                    categoria.Codigo = elLectorDeDatos.GetInt32(1);
-                    categoria.Nombre = elLectorDeDatos.GetString(2);
-                    categoria.Rubro = elLectorDeDatos.GetString(4);
-                    categoria.Descripcion = elLectorDeDatos.GetString(5);
+                   
+                    categoria.Nombre = elLectorDeDatos.GetString(1);
+                    
+                    categoria.Descripcion = elLectorDeDatos.GetString(2);
+
+                    listaCategoria.Add(categoria);
 
                 }
                 return listaCategoria;
@@ -97,20 +99,20 @@ namespace ClasesNegocio
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
 
         {
-            SqlParameter p1 = new SqlParameter("@Codigo", this.Codigo);
-            SqlParameter p2 = new SqlParameter("@Nombre", this.Nombre);
-            SqlParameter p3 = new SqlParameter("@Rubro", this.Rubro);
-            SqlParameter p4 = new SqlParameter("@Decripcion", this.Descripcion);
-         
-            p1.SqlDbType = SqlDbType.Int;
-            p2.SqlDbType = SqlDbType.VarChar;
-            p3.SqlDbType = SqlDbType.VarChar;
-            p4.SqlDbType = SqlDbType.VarChar;
             
+            SqlParameter p1 = new SqlParameter("@Nombre", this.Nombre);
+           
+            SqlParameter p2 = new SqlParameter("@Descripcion", this.Descripcion);
+         
+            
+            p1.SqlDbType = SqlDbType.VarChar;
+            
+            p2.SqlDbType = SqlDbType.VarChar;
+            
+       
             cmd.Parameters.Add(p1);
+            
             cmd.Parameters.Add(p2);
-            cmd.Parameters.Add(p3);
-            cmd.Parameters.Add(p4);
            
             if (id == true)
             {
@@ -122,9 +124,9 @@ namespace ClasesNegocio
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
 
-            SqlParameter p9 = new SqlParameter("@id", this.Id);
-            p9.SqlDbType = SqlDbType.Int;
-            cmd.Parameters.Add(p9);
+            SqlParameter p3 = new SqlParameter("@id", this.Id);
+            p3.SqlDbType = SqlDbType.Int;
+            cmd.Parameters.Add(p3);
             return cmd;
         }
 
