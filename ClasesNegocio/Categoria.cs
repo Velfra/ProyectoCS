@@ -11,9 +11,9 @@ namespace ClasesNegocio
    public class Categoria
     {
         public int Id { get; set; }
-        //public int Codigo { get; set; }
+        
         public string Nombre { get; set; }
-        //public string Rubro { get; set; }
+        
         public string Descripcion { get; set; }
 
         public static List<Categoria> listaCategoria = new List<Categoria>();

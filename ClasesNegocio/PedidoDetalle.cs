@@ -8,5 +8,7 @@ namespace ClasesNegocio
 {
    public class PedidoDetalle
     {
+        public double cantidad { get; set; }
+        public Producto producto { get; set; }
     }
 }
