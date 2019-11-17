@@ -39,7 +39,7 @@ namespace ControlStock
                 else
                 {
                     int indice = lstProveedor.SelectedIndex;
-                    Proveedor.EditarProveedor(p, indice);
+                    Proveedor.EditarProveedor(indice, p);
                     ActualizarListaProveedores();
                 }
 
@@ -57,9 +57,9 @@ namespace ControlStock
         private Proveedor ObtenerDatosFormulario()
         {
             Proveedor proveedor = new Proveedor();
-            proveedor.NombreProveedor = txtNombreProveedor.Text;
+            proveedor.RazonSocial = txtNombreProveedor.Text;
             proveedor.Direccion = txtDireccion.Text;
-            proveedor.Telefono = txtTelefono.Text;
+            proveedor.Contacto = txtTelefono.Text;
             proveedor.Email = txtMail.Text;
 
             return proveedor;
@@ -192,10 +192,10 @@ namespace ControlStock
 
             if (p != null)
             {
-                txtTelefono.Text = p.Telefono;
+                txtTelefono.Text = p.Contacto;
                 txtDireccion.Text = p.Direccion;
                 txtMail.Text = p.Email;
-                txtNombreProveedor.Text = p.NombreProveedor;
+                txtNombreProveedor.Text = p.RazonSocial;
             } 
 
             tbcPrincipal.SelectedIndex = 0;

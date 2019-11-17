@@ -67,11 +67,11 @@ namespace ControlStock
         private Producto ObtenerDatosFormulario()
         {
             Producto producto = new Producto();
-            producto.Nombre_Producto = txtNombre.Text;
-            producto.categoria = (Categoria)cboCategoria.SelectedValue;
+            producto.Nombre = txtNombre.Text;
+            producto.Categoria = (Categoria)cboCategoria.SelectedValue;
             producto.Cantidad = (int)nudCantidad.Value;
-            producto.Precio_Costo = (double)(nudPrecioCosto.Value);
-            producto.proveedor = (Proveedor)cboProveedor.SelectedValue;
+            producto.PrecioCompra = (double)(nudPrecioCosto.Value);
+            producto.Proveedor = (Proveedor)cboProveedor.SelectedValue;
 
             return producto;
 
@@ -112,7 +112,7 @@ namespace ControlStock
         private void ActualizarListaProductos()
         {
             lstProducto.DataSource = null;
-            lstProducto.DataSource = Producto.ObtenerProducto();
+            lstProducto.DataSource = Producto.ObtenerProductos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -147,11 +147,11 @@ namespace ControlStock
 
             if (p != null)
             {
-                txtNombre.Text = p.Nombre_Producto;
-                cboCategoria.SelectedItem = p.categoria;
-                cboProveedor.SelectedItem = p.proveedor;
+                txtNombre.Text = p.Nombre;
+                cboCategoria.SelectedItem = p.Categoria;
+                cboProveedor.SelectedItem = p.Proveedor;
                 nudCantidad.Value = p.Cantidad;
-               nudPrecioCosto.Value =(decimal)p.Precio_Costo;
+               nudPrecioCosto.Value =(decimal)p.PrecioCompra;
             }
 
             tbcProducto.SelectedIndex = 0;
