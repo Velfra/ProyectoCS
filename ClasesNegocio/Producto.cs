@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClasesNegocio
 {
+    //public enum Categoria { Limpieza, Marron, Rojo, Azul, Dorado, Marfil }
     public class Producto
     {
         public int Id { get; set; }
