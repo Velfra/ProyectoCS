@@ -175,6 +175,7 @@ namespace ControlStock
         {
             ActualizarListaProductos();
             cboProveedor.DataSource = Proveedor.ObtenerProveedores();
+            cboCategoria.DataSource = Categoria.ObtenerCategorias();
             cboCategoria.SelectedItem = null;
             cboProveedor.SelectedItem = null;
             BloquearFormulario();

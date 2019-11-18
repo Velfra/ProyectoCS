@@ -23,7 +23,7 @@ namespace ClasesNegocio
             {
                 con.Open();
                 
-                string textoCMD = "INSERT INTO pedido (fecha_llegada, proveedor) output INSERTED.id VALUES (@fecha_llegada, @proveedor)";
+                string textoCMD = "INSERT INTO Pedido (fecha_llegada, Proveedor) output INSERTED.id VALUES (@fecha_llegada, @proveedor)";
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
 
                 
@@ -35,20 +35,20 @@ namespace ClasesNegocio
                 cmd.Parameters.Add(p1);
                 cmd.Parameters.Add(p2);
 
-                int id_pedido = (int)cmd.ExecuteScalar();
+                int pedido_id = (int)cmd.ExecuteScalar();
 
                 
                 foreach (PedidoDetalle dp in p.detalle_pedidos)
                 {
                     
-                    string textoCMD2 = "INSERT INTO Pedido_Detalle(pedido_id, cantidad, carne) VALUES (@id, @cantidad, @carne)";
+                    string textoCMD2 = "INSERT INTO Pedido_Detalle(pedido_id,cantidad, producto) VALUES (@pedido_id, @cantidad, @producto)";
                     SqlCommand cmd2 = new SqlCommand(textoCMD2, con);
 
-                    //Pasamos los parametros
+                    
 
-                    SqlParameter p3 = new SqlParameter("@id", id_pedido);
+                    SqlParameter p3 = new SqlParameter("@pedido_id", pedido_id);
                     SqlParameter p4 = new SqlParameter("@cantidad", dp.cantidad);
-                    SqlParameter p5 = new SqlParameter("@carne", dp.producto.Id);
+                    SqlParameter p5 = new SqlParameter("@producto", dp.producto.Id);
 
                     cmd2.Parameters.Add(p3);
                     cmd2.Parameters.Add(p4);

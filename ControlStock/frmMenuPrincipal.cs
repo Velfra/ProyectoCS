@@ -39,5 +39,11 @@ namespace ControlStock
             frmCategoria frmCateg = new frmCategoria();
             frmCateg.Show();
         }
+
+        private void pedidoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPedidoProducto frmPedido = new frmPedidoProducto();
+            frmPedido.Show();
+        }
     }
 }

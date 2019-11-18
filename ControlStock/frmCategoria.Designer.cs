@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCategoria));
             this.tbcCategoria = new System.Windows.Forms.TabControl();
             this.tbpABM = new System.Windows.Forms.TabPage();
-            this.tbpConsulta = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -43,12 +43,13 @@
             this.lblDireccion = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblProveedor = new System.Windows.Forms.Label();
+            this.tbpConsulta = new System.Windows.Forms.TabPage();
             this.lstCategoria = new System.Windows.Forms.ListBox();
             this.tbcCategoria.SuspendLayout();
             this.tbpABM.SuspendLayout();
-            this.tbpConsulta.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tbpConsulta.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcCategoria
@@ -73,17 +74,6 @@
             this.tbpABM.TabIndex = 0;
             this.tbpABM.Text = "Categorias";
             this.tbpABM.UseVisualStyleBackColor = true;
-            // 
-            // tbpConsulta
-            // 
-            this.tbpConsulta.Controls.Add(this.lstCategoria);
-            this.tbpConsulta.Location = new System.Drawing.Point(4, 25);
-            this.tbpConsulta.Name = "tbpConsulta";
-            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpConsulta.Size = new System.Drawing.Size(692, 433);
-            this.tbpConsulta.TabIndex = 1;
-            this.tbpConsulta.Text = "Consulta";
-            this.tbpConsulta.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -206,6 +196,17 @@
             this.lblProveedor.TabIndex = 0;
             this.lblProveedor.Text = "Nombre";
             // 
+            // tbpConsulta
+            // 
+            this.tbpConsulta.Controls.Add(this.lstCategoria);
+            this.tbpConsulta.Location = new System.Drawing.Point(4, 25);
+            this.tbpConsulta.Name = "tbpConsulta";
+            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpConsulta.Size = new System.Drawing.Size(692, 433);
+            this.tbpConsulta.TabIndex = 1;
+            this.tbpConsulta.Text = "Consulta";
+            this.tbpConsulta.UseVisualStyleBackColor = true;
+            // 
             // lstCategoria
             // 
             this.lstCategoria.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -223,15 +224,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 462);
             this.Controls.Add(this.tbcCategoria);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCategoria";
             this.Text = "Categoria";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
             this.tbcCategoria.ResumeLayout(false);
             this.tbpABM.ResumeLayout(false);
-            this.tbpConsulta.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tbpConsulta.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -17,7 +17,7 @@ namespace ClasesNegocio
         public Categoria Categoria { get; set; }
         public double PrecioCompra { get; set; }
         public Proveedor Proveedor { get; set; }
-        public List<string> DiasEntrega { get; set; }
+        public DateTime FechaPedido { get; set; }
 
         public static List<Producto> listaProducto = new List<Producto>();
 
@@ -28,7 +28,7 @@ namespace ClasesNegocio
 
             {
                 con.Open();
-                string textoCmd = "insert into Producto (Nombre, Cantidad, Categoria, PrecioCompra, Proveedor, DiasEntrega) VALUES (@Nombre, @Cantiodad, @Categoria, @PrecioCompra, @Proveedor, @DiasEntrega)";
+                string textoCmd = "insert into Producto (Nombre, Cantidad, Categoria, PrecioCompra, Proveedor, Fecha_pedido) VALUES (@Nombre, @Cantidad, @Categoria, @PrecioCompra, @Proveedor, @Fecha_pedido)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = p.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -58,7 +58,7 @@ namespace ClasesNegocio
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Producto SET Nombre = @Nombre, Cantidad = @Cantidad, Categoria = @Categoria, PrecioCompra = @PrecioCompra, Proveedor = @proveedor, DiasEntrega = @DiasEntrega where Id = @Id";
+                string textoCMD = "UPDATE Producto SET Nombre = @Nombre, Cantidad = @Cantidad, Categoria = @Categoria, PrecioCompra = @PrecioCompra, Proveedor = @proveedor, Fecha_pedido = @Fecha_pedido where Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = p.ObtenerParametros(cmd, true);
@@ -93,12 +93,16 @@ namespace ClasesNegocio
                     producto.Categoria = Categoria.ObtenerCategoria(elLectorDeDatos.GetInt32(3));
                     producto.PrecioCompra = elLectorDeDatos.GetDouble(4);
                     producto.Proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(5));
-                    producto.DiasEntrega = ObtenerListaDiasEntrega(elLectorDeDatos.GetString(6));
+                    producto.FechaPedido = elLectorDeDatos.GetDateTime(6);
+
+
                     listaProducto.Add(producto);
                 }
                 return listaProducto;
             }
         }
+
+        
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
 
@@ -108,14 +112,16 @@ namespace ClasesNegocio
             SqlParameter p3 = new SqlParameter("@Categoria", this.Categoria.Id);
             SqlParameter p4 = new SqlParameter("@PrecioCompra", this.PrecioCompra);
             SqlParameter p5 = new SqlParameter("@Proveedor", this.Proveedor.Id);
-            SqlParameter p6 = new SqlParameter("@DiasEntrega", this.obtenerStringDiasEntrega());
+            SqlParameter p6 = new SqlParameter("@Fecha_pedido", this.FechaPedido);
+
 
             p1.SqlDbType = SqlDbType.VarChar;
             p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.Int;
             p4.SqlDbType = SqlDbType.Float;
             p5.SqlDbType = SqlDbType.Int;
-            p6.SqlDbType = SqlDbType.VarChar;
+            p6.SqlDbType = SqlDbType.DateTime;
+
 
             cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
@@ -124,6 +130,7 @@ namespace ClasesNegocio
             cmd.Parameters.Add(p5);
             cmd.Parameters.Add(p6);
 
+
             if (id == true)
             {
                 cmd = ObtenerParametrosId(cmd);
@@ -131,15 +138,7 @@ namespace ClasesNegocio
             return cmd;
         }
 
-        private string obtenerStringDiasEntrega()
-        {
-            return string.Join(",", this.DiasEntrega);
-        }
-
-        private static List<string> ObtenerListaDiasEntrega(string dias)
-        {
-            return dias.Split(',').ToList();
-        }
+        
 
         private SqlCommand ObtenerParametrosId(SqlCommand cmd)
         {
