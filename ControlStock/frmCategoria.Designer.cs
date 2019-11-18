@@ -226,6 +226,7 @@
             this.Controls.Add(this.tbcCategoria);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCategoria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categoria";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
             this.tbcCategoria.ResumeLayout(false);
