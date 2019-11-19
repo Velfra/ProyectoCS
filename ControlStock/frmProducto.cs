@@ -101,7 +101,6 @@ namespace ControlStock
                     ActualizarListaProductos();
                 }
 
-
             }
 
             LimpiarFormulario();
