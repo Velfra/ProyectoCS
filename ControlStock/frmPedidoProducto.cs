@@ -57,8 +57,7 @@ namespace ControlStock
         private void Limpiar()
         {
             txtCantidad.Text = "0";
-            cmbProducto.SelectedItem = null;
-            
+            cmbProducto.SelectedItem = null;           
 
 
         }

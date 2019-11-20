@@ -112,7 +112,7 @@ namespace ClasesNegocio
             SqlParameter p3 = new SqlParameter("@Categoria", this.Categoria.Id);
             SqlParameter p4 = new SqlParameter("@PrecioCompra", this.PrecioCompra);
             SqlParameter p5 = new SqlParameter("@Proveedor", this.Proveedor.Id);
-            SqlParameter p6 = new SqlParameter("@Fecha_pedido", this.FechaPedido);
+            SqlParameter p6 = new SqlParameter("@Fecha_pedido", DateTime.Today);
 
 
             p1.SqlDbType = SqlDbType.VarChar;
@@ -147,6 +147,35 @@ namespace ClasesNegocio
             p9.SqlDbType = SqlDbType.Int;
             cmd.Parameters.Add(p9);
             return cmd;
+        }
+
+        public static List<Producto> BuscarProducto()
+        {
+            Producto producto;
+            listaProducto.Clear();
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string textoCMD = "Select * from Proveedor";
+
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                while (elLectorDeDatos.Read())
+                {
+                    producto = new Producto();
+                    producto.Id = elLectorDeDatos.GetInt32(0);
+                    producto.Nombre = elLectorDeDatos.GetString(1);
+                    
+                    listaProducto.Add(producto);
+                }
+
+                return listaProducto;
+
+            }
+
         }
 
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace ControlStock
 {
     public partial class frmProducto : Form
     {
+        DataSet resultados = new DataSet();
+        DataView mifiltro;
         string modo;
         public frmProducto()
         {
@@ -41,7 +44,6 @@ namespace ControlStock
             btnCancelar.Enabled = true;
             btnLimpiar.Enabled = true;
 
-            lstProducto.Enabled = false;
             btnAgregar.Enabled = false;
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
@@ -58,7 +60,7 @@ namespace ControlStock
             btnCancelar.Enabled = false;
             btnLimpiar.Enabled = false;
 
-            lstProducto.Enabled = true;
+            
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;
             btnModificar.Enabled = true;
@@ -89,14 +91,14 @@ namespace ControlStock
             else if (modo == "EDITAR")
             {
 
-                if (this.lstProducto.SelectedItems.Count == 0)
+                if (this.dgvProducto.SelectedRows.Count == 0)
                 {
                     MessageBox.Show("Favor seleccione una fila");
                 }
 
                 else
                 {
-                    int indice = lstProducto.SelectedIndex;
+                    int indice = Convert.ToInt32(dgvProducto.SelectedRows.Count);
                     Producto.EditarProducto(p, indice);
                     ActualizarListaProductos();
                 }
@@ -110,19 +112,19 @@ namespace ControlStock
 
         private void ActualizarListaProductos()
         {
-            lstProducto.DataSource = null;
-            lstProducto.DataSource = Producto.ObtenerProductos();
+            dgvProducto.DataSource = null;
+            dgvProducto.DataSource = Producto.ObtenerProductos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.lstProducto.SelectedItems.Count == 0)
+            if (this.dgvProducto.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Favor seleccione una fila");
             }
             else
             {
-                Producto p = (Producto)lstProducto.SelectedItem;
+                Producto p = (Producto)dgvProducto.CurrentRow.DataBoundItem;
                 Producto.EliminarProducto(p);
                 ActualizarListaProductos();
                 LimpiarFormulario();
@@ -140,25 +142,9 @@ namespace ControlStock
             BloquearFormulario();
         }
 
-        private void lstProducto_DoubleClick(object sender, EventArgs e)
-        {
-            Producto p = (Producto)lstProducto.SelectedItem;
-
-            if (p != null)
-            {
-                txtNombre.Text = p.Nombre;
-                cboCategoria.SelectedItem = p.Categoria;
-                cboProveedor.SelectedItem = p.Proveedor;
-                nudCantidad.Value = p.Cantidad;
-               nudPrecioCosto.Value =(decimal)p.PrecioCompra;
-            }
-
-            tbcProducto.SelectedIndex = 0;
-        }
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (this.lstProducto.SelectedItems.Count == 0)
+            if (this.dgvProducto.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Favor seleccione una fila");
             }
@@ -177,7 +163,7 @@ namespace ControlStock
             cboCategoria.DataSource = Categoria.ObtenerCategorias();
             cboCategoria.SelectedItem = null;
             cboProveedor.SelectedItem = null;
-            BloquearFormulario();
+            BloquearFormulario();          
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -186,6 +172,63 @@ namespace ControlStock
             LimpiarFormulario();
             DesbloquearFormulario();
             txtNombre.Focus();
+        }
+      
+        private void leer_datos(string query, ref DataSet dstPrincipal, string tabla)
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dstPrincipal, tabla);
+                da.Dispose();
+                con.Close();
+
+            }
+        }
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            string salidaDatos = "";
+            string[] palabrasBusqueda = this.txtBuscar.Text.Split(' ');
+            foreach (string palabra in palabrasBusqueda)
+            {
+                if (salidaDatos.Length == 0)
+                {
+                    salidaDatos = "(Nombre Like '%" + txtBuscar.Text + "%')";
+                }
+                else
+                {
+                    salidaDatos += "(Nombre Like '%" + txtBuscar.Text + "%')";
+                }
+            }
+            this.mifiltro.RowFilter = salidaDatos;
+        }
+
+        private void dgvProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Producto p = (Producto)dgvProducto.CurrentRow.DataBoundItem;
+
+            if (p != null)
+            {
+                txtNombre.Text = p.Nombre;
+                cboCategoria.SelectedItem = p.Categoria.Nombre;
+                cboProveedor.SelectedItem = p.Proveedor.RazonSocial;
+                nudCantidad.Value = p.Cantidad;
+                nudPrecioCosto.Value = (decimal)p.PrecioCompra;
+            }
+
+            tbcProducto.SelectedIndex = 0;
+        }
+
+        private void tbcProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            resultados.Clear();
+            this.leer_datos("Select Producto.Nombre,cantidad,Categoria.Nombre,PrecioCompra,Proveedor.RazonSocial,Fecha_pedido from Producto INNER JOIN Proveedor On Proveedor.id = Producto.Proveedor INNER JOIN Categoria On Categoria.id = Producto.Categoria", ref resultados, "producto");
+            this.mifiltro = ((DataTable)resultados.Tables["producto"]).DefaultView;
+            this.dgvProducto.DataSource = mifiltro;
+            
+            
         }
     }
 }
