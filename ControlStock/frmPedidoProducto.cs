@@ -100,6 +100,13 @@ namespace ControlStock
             }
         }
 
+        private void dtgDetallePedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtCantidad.Text = Convert.ToString(this.dtgDetallePedido.CurrentRow.Cells[0].Value);
+            cmbProducto.Text = Convert.ToString(this.dtgDetallePedido.CurrentRow.Cells[1].Value);
+            tbcPedido.SelectedIndex = 0;
+        }
+
         //private void dtgDetallePedido_CellContentClick(object sender, DataGridViewCellEventArgs e)
         //{
         //    Producto producto = (Producto)dtgDetallePedido.CurrentRow.DataBoundItem;

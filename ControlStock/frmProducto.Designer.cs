@@ -159,8 +159,8 @@
             // 
             this.nudPrecioCosto.Location = new System.Drawing.Point(94, 128);
             this.nudPrecioCosto.Maximum = new decimal(new int[] {
-            999999999,
-            0,
+            -727379969,
+            232,
             0,
             0});
             this.nudPrecioCosto.Name = "nudPrecioCosto";
@@ -254,6 +254,11 @@
             // nudCantidad
             // 
             this.nudCantidad.Location = new System.Drawing.Point(94, 92);
+            this.nudCantidad.Maximum = new decimal(new int[] {
+            1241513983,
+            370409800,
+            542101,
+            0});
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(68, 20);
             this.nudCantidad.TabIndex = 6;
@@ -313,7 +318,7 @@
             this.dgvProducto.RowHeadersVisible = false;
             this.dgvProducto.Size = new System.Drawing.Size(607, 341);
             this.dgvProducto.TabIndex = 2;
-            this.dgvProducto.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellContentDoubleClick);
+            this.dgvProducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellDoubleClick);
             // 
             // lblDescripcion
             // 

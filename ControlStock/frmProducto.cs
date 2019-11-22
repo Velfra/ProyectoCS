@@ -207,18 +207,7 @@ namespace ControlStock
 
         private void dgvProducto_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Producto p = (Producto)dgvProducto.CurrentRow.DataBoundItem;
-
-            if (p != null)
-            {
-                txtNombre.Text = p.Nombre;
-                cboCategoria.SelectedItem = p.Categoria.Nombre;
-                cboProveedor.SelectedItem = p.Proveedor.RazonSocial;
-                nudCantidad.Value = p.Cantidad;
-                nudPrecioCosto.Value = (decimal)p.PrecioCompra;
-            }
-
-            tbcProducto.SelectedIndex = 0;
+            
         }
 
         private void tbcProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -230,5 +219,17 @@ namespace ControlStock
             
             
         }
+
+        private void dgvProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {     
+             txtNombre.Text = this.dgvProducto.CurrentRow.Cells[0].Value.ToString();
+             nudCantidad.Value = Convert.ToInt32(this.dgvProducto.CurrentRow.Cells[1].Value);
+             cboCategoria.Text = Convert.ToString(this.dgvProducto.CurrentRow.Cells[2].Value);
+             nudPrecioCosto.Value =Convert.ToDecimal(this.dgvProducto.CurrentRow.Cells[3].Value);
+             cboProveedor.Text =Convert.ToString(this.dgvProducto.CurrentRow.Cells[4]);
+             tbcProducto.SelectedIndex = 0;           
+        }
+
+
     }
 }
