@@ -52,13 +52,13 @@ namespace ClasesNegocio
             }
         }
 
-        public static void EditarProducto(Producto p, int indice)
+        public static void EditarProducto(Producto p)
         {
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
             {
                 con.Open();
-                string textoCMD = "UPDATE Producto SET Nombre = @Nombre, Cantidad = @Cantidad, Categoria = @Categoria, PrecioCompra = @PrecioCompra, Proveedor = @proveedor, Fecha_pedido = @Fecha_pedido where Id = @Id";
+                string textoCMD = "UPDATE Producto SET Nombre = @Nombre, Cantidad = @Cantidad, Categoria = @Categoria, PrecioCompra = @PrecioCompra, Proveedor = @proveedor where Id = @Id";
 
                 SqlCommand cmd = new SqlCommand(textoCMD, con);
                 cmd = p.ObtenerParametros(cmd, true);

@@ -318,6 +318,8 @@
             this.dgvProducto.RowHeadersVisible = false;
             this.dgvProducto.Size = new System.Drawing.Size(607, 341);
             this.dgvProducto.TabIndex = 2;
+            this.dgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellClick);
+            this.dgvProducto.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellContentDoubleClick_1);
             this.dgvProducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellDoubleClick);
             // 
             // lblDescripcion

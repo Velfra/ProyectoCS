@@ -16,6 +16,7 @@ namespace ControlStock
     {
         DataSet resultados = new DataSet();
         DataView mifiltro;
+        int productoID;
         string modo;
         public frmProducto()
         {
@@ -69,6 +70,7 @@ namespace ControlStock
         private Producto ObtenerDatosFormulario()
         {
             Producto producto = new Producto();
+            producto.Id = productoID;
             producto.Nombre = txtNombre.Text;
             producto.Categoria = (Categoria)cboCategoria.SelectedValue;
             producto.Cantidad = (int)nudCantidad.Value;
@@ -90,18 +92,9 @@ namespace ControlStock
             }
             else if (modo == "EDITAR")
             {
-
-                if (this.dgvProducto.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Favor seleccione una fila");
-                }
-
-                else
-                {
-                    int indice = Convert.ToInt32(dgvProducto.SelectedRows.Count);
-                    Producto.EditarProducto(p, indice);
+                    Producto.EditarProducto(p);
                     ActualizarListaProductos();
-                }
+                
 
             }
 
@@ -118,17 +111,10 @@ namespace ControlStock
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.dgvProducto.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
-                Producto p = (Producto)dgvProducto.CurrentRow.DataBoundItem;
+                var p = ObtenerDatosFormulario();
                 Producto.EliminarProducto(p);
                 ActualizarListaProductos();
                 LimpiarFormulario();
-            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -144,16 +130,10 @@ namespace ControlStock
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (this.dgvProducto.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
                 modo = "EDITAR";
                 DesbloquearFormulario();
                 txtNombre.Focus();
-            }
+
         }
 
         private void frmProducto_Load(object sender, EventArgs e)
@@ -213,23 +193,34 @@ namespace ControlStock
         private void tbcProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
             resultados.Clear();
-            this.leer_datos("Select Producto.Nombre,cantidad,Categoria.Nombre,PrecioCompra,Proveedor.RazonSocial,Fecha_pedido from Producto INNER JOIN Proveedor On Proveedor.id = Producto.Proveedor INNER JOIN Categoria On Categoria.id = Producto.Categoria", ref resultados, "producto");
+            this.leer_datos("Select Producto.Id,Producto.Nombre,cantidad,Categoria.Nombre,PrecioCompra,Proveedor.RazonSocial,Fecha_pedido from Producto INNER JOIN Proveedor On Proveedor.id = Producto.Proveedor INNER JOIN Categoria On Categoria.id = Producto.Categoria", ref resultados, "producto");
             this.mifiltro = ((DataTable)resultados.Tables["producto"]).DefaultView;
             this.dgvProducto.DataSource = mifiltro;
+            
             
             
         }
 
         private void dgvProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {     
-             txtNombre.Text = this.dgvProducto.CurrentRow.Cells[0].Value.ToString();
-             nudCantidad.Value = Convert.ToInt32(this.dgvProducto.CurrentRow.Cells[1].Value);
-             cboCategoria.Text = Convert.ToString(this.dgvProducto.CurrentRow.Cells[2].Value);
-             nudPrecioCosto.Value =Convert.ToDecimal(this.dgvProducto.CurrentRow.Cells[3].Value);
-             cboProveedor.Text =Convert.ToString(this.dgvProducto.CurrentRow.Cells[4]);
-             tbcProducto.SelectedIndex = 0;           
+                     
         }
 
+        private void dgvProducto_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            productoID = Convert.ToInt32(this.dgvProducto.CurrentRow.Cells[0].Value);
+            txtNombre.Text = this.dgvProducto.CurrentRow.Cells[1].Value.ToString();
+            nudCantidad.Value = Convert.ToInt32(this.dgvProducto.CurrentRow.Cells[2].Value);
+            cboCategoria.Text = Convert.ToString(this.dgvProducto.CurrentRow.Cells[3].Value);
+            nudPrecioCosto.Value = Convert.ToDecimal(this.dgvProducto.CurrentRow.Cells[4].Value);
+            cboProveedor.Text = Convert.ToString(this.dgvProducto.CurrentRow.Cells[5].Value);
+            tbcProducto.SelectedIndex = 0;
+            btnAgregar.Enabled = false;
+        }
 
+        private void dgvProducto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
     }
 }
