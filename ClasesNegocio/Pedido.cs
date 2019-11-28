@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -60,12 +61,48 @@ namespace ClasesNegocio
         }
         public static void Eliminar(Pedido p)
         {
-            listaPedidos.Remove(p);
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string SENTENCIA_SQL = "delete from Pedido where Id = @Id";
+
+                SqlCommand cmd = new SqlCommand(SENTENCIA_SQL, con);
+                SqlParameter p5 = new SqlParameter("@Id", p.Id);
+                p5.SqlDbType = SqlDbType.Int;
+                cmd.Parameters.Add(p5);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
-        public static List<Pedido> Obtener()
+        public static List<Pedido> ObtenerPedido()
         {
-            return listaPedidos;
+            Pedido pedido;
+            listaPedidos.Clear();
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+
+            {
+                con.Open();
+                string textoCMD = "Select * from Pedido";
+
+                SqlCommand cmd = new SqlCommand(textoCMD, con);
+
+                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
+
+                while (elLectorDeDatos.Read())
+                {
+                    pedido = new Pedido();
+                    pedido.Id = elLectorDeDatos.GetInt32(0);
+                    pedido.proveedor = Proveedor.ObtenerProveedor(elLectorDeDatos.GetInt32(1));
+                    pedido.fecha_llegada = Convert.ToDateTime(elLectorDeDatos.GetString(2));
+                   
+                    listaPedidos.Add(pedido);
+                }
+
+                return listaPedidos;
+
+            }
         }
 
         public override string ToString()

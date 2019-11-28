@@ -71,7 +71,7 @@ namespace ClasesNegocio
             }
         }
 
-        public static void EditarProveedor(int index, Proveedor p)
+        public static void EditarProveedor( Proveedor p)
         {
            
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))

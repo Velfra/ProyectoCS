@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,9 @@ namespace ControlStock
 {
     public partial class frmProveedor : Form
     {
+        DataSet resultados = new DataSet();
+        DataView mifiltro;
+        int proveedorID;
         string modo;
         public frmProveedor()
         {
@@ -30,18 +34,9 @@ namespace ControlStock
             }
             else if (modo == "EDITAR")
             {
-
-                if (this.lstProveedor.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Favor seleccione una fila");
-                }
-
-                else
-                {
-                    int indice = lstProveedor.SelectedIndex;
-                    Proveedor.EditarProveedor(indice, p);
+             
+                    Proveedor.EditarProveedor(p);
                     ActualizarListaProveedores();
-                }
 
 
             }
@@ -57,6 +52,7 @@ namespace ControlStock
         private Proveedor ObtenerDatosFormulario()
         {
             Proveedor proveedor = new Proveedor();
+            proveedor.Id = proveedorID;
             proveedor.RazonSocial = txtNombreProveedor.Text;
             proveedor.Direccion = txtDireccion.Text;
             proveedor.Contacto = txtTelefono.Text;
@@ -85,7 +81,7 @@ namespace ControlStock
             btnCancelar.Enabled = true;
             btnLimpiar.Enabled = true;
 
-            lstProveedor.Enabled = false;
+            dgvProveedor.Enabled = false;
             btnAgregar.Enabled = false;
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
@@ -104,17 +100,10 @@ namespace ControlStock
 
 
         private void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (this.lstProveedor.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
+        {         
                 modo = "EDITAR";
                 DesbloquearFormularios();
-                txtNombreProveedor.Focus();
-            }
+                txtNombreProveedor.Focus();  
         }
 
         private void frmProveedor_Load(object sender, EventArgs e)
@@ -125,8 +114,8 @@ namespace ControlStock
 
         private void ActualizarListaProveedores()
         {
-            lstProveedor.DataSource = null;
-            lstProveedor.DataSource = Proveedor.ObtenerProveedores();
+            dgvProveedor.DataSource = null;
+            dgvProveedor.DataSource = Proveedor.ObtenerProveedores();
         }
 
 
@@ -141,7 +130,7 @@ namespace ControlStock
             btnCancelar.Enabled = false;
             btnLimpiar.Enabled = false;
 
-            lstProveedor.Enabled = true;
+            dgvProveedor.Enabled = true;
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;
             btnModificar.Enabled = true;
@@ -149,31 +138,26 @@ namespace ControlStock
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.lstProveedor.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
-                Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+
+                var p = ObtenerDatosFormulario();
                 Proveedor.EliminarProveedor(p);
                 ActualizarListaProveedores();
-                LimpiarFormulario();
-            }
+                LimpiarFormulario();           
         }
 
-        //private void lstProveedor_Click(object sender, EventArgs e)
-        //{
-        //    Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+        private void leer_datos(string query, ref DataSet dstPrincipal, string tabla)
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dstPrincipal, tabla);
+                da.Dispose();
+                con.Close();
 
-        //    if (p != null)
-        //    {
-        //        txtTelefono.Text = p.Telefono;
-        //        txtDireccion.Text = p.Direccion;
-        //        txtMail.Text = p.Email;
-        //        txtNombreProveedor.Text = p.NombreProveedor;
-        //    }
-        //}
+            }
+        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -186,19 +170,41 @@ namespace ControlStock
             BloquearFormulario();
         }
 
-        private void lstProveedor_DoubleClick(object sender, EventArgs e)
+        private void tbcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Proveedor p = (Proveedor)lstProveedor.SelectedItem;
+            resultados.Clear();
+            this.leer_datos("Select Proveedor.Id,RazonSocial,Direccion,Contacto,Email from Proveedor", ref resultados, "Proveedor");
+            this.mifiltro = ((DataTable)resultados.Tables["Proveedor"]).DefaultView;
+            this.dgvProveedor.DataSource = mifiltro;
+        }
 
-            if (p != null)
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            string salidaDatos = "";
+            string[] palabrasBusqueda = this.txtBuscar.Text.Split(' ');
+            foreach (string palabra in palabrasBusqueda)
             {
-                txtTelefono.Text = p.Contacto;
-                txtDireccion.Text = p.Direccion;
-                txtMail.Text = p.Email;
-                txtNombreProveedor.Text = p.RazonSocial;
-            } 
+                if (salidaDatos.Length == 0)
+                {
+                    salidaDatos = "(RazonSocial Like '%" + txtBuscar.Text + "%')";
+                }
+                else
+                {
+                    salidaDatos += "(RazonSocial Like '%" + txtBuscar.Text + "%')";
+                }
+            }
+            this.mifiltro.RowFilter = salidaDatos;
+        }
 
+        private void dgvProveedor_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            proveedorID = Convert.ToInt32(this.dgvProveedor.CurrentRow.Cells[0].Value);
+            txtNombreProveedor.Text = this.dgvProveedor.CurrentRow.Cells[1].Value.ToString();
+            txtDireccion.Text = this.dgvProveedor.CurrentRow.Cells[2].Value.ToString();
+            txtTelefono.Text =this.dgvProveedor.CurrentRow.Cells[3].Value.ToString();
+            txtMail.Text = this.dgvProveedor.CurrentRow.Cells[4].Value.ToString();
             tbcPrincipal.SelectedIndex = 0;
+            btnAgregar.Enabled = false;
         }
     }
 }

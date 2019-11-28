@@ -40,7 +40,7 @@ namespace ControlStock
             frmCateg.Show();
         }
 
-        private void pedidoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPedidoProducto frmPedido = new frmPedidoProducto();
             frmPedido.Show();

@@ -326,15 +326,15 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(62, 19);
+            this.lblDescripcion.Location = new System.Drawing.Point(78, 21);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(113, 21);
+            this.lblDescripcion.Size = new System.Drawing.Size(88, 21);
             this.lblDescripcion.TabIndex = 1;
-            this.lblDescripcion.Text = "Descripcion";
+            this.lblDescripcion.Text = "Producto";
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(229, 22);
+            this.txtBuscar.Location = new System.Drawing.Point(200, 24);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(289, 20);
             this.txtBuscar.TabIndex = 0;
