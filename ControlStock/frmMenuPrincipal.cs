@@ -45,5 +45,11 @@ namespace ControlStock
             frmPedidoProducto frmPedido = new frmPedidoProducto();
             frmPedido.Show();
         }
+
+        private void entradaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEntradaSalida frmEnSal = new frmEntradaSalida();
+            frmEnSal.Show();
+        }
     }
 }

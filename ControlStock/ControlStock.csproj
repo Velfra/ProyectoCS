@@ -51,6 +51,12 @@
     <Compile Include="frmCategoria.Designer.cs">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEntradaSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEntradaSalida.Designer.cs">
+      <DependentUpon>frmEntradaSalida.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEntradaSalida.resx">
+      <DependentUpon>frmEntradaSalida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
