@@ -179,31 +179,6 @@ namespace ClasesNegocio
         }
 
 
-        public static List<Producto> SaberStock()
-        {
-            Producto producto;
-
-            listaProducto.Clear();
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
-                con.Open();
-                string textoCMD = "Select producto.cantidad from Producto where Id = @Id";
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
-
-                while (elLectorDeDatos.Read())
-                {
-                    producto = new Producto();
-                    producto.Id = elLectorDeDatos.GetInt32(0);
-                    producto.Cantidad = elLectorDeDatos.GetInt32(1);
-
-                    listaProducto.Add(producto);
-                }
-                return listaProducto;
-            }
-        }
-
-
 
     }
 }

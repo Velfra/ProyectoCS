@@ -25,13 +25,23 @@ namespace ControlStock
             cboProducto.DataSource = Producto.ObtenerProductos();
             cboProducto.SelectedItem = null;
             nudStock.Enabled = false;
+           // nudStock.Value = 0;
 
-          //  nudStock.Value = Convert.ToInt32(producto.Cantidad);
+           
         }
 
         private void cboProducto_SelectedValueChanged(object sender, EventArgs e)
         {
-            
+            if (cboProducto.SelectedItem != null)
+            {
+                Producto p = (Producto)cboProducto.SelectedItem;
+                nudStock.Value = p.Cantidad;       
+            }
+            else
+            {
+                nudStock.Value = 0;
+            }
+          
         }
 
         private void leer_datos(string query, string tabla)
