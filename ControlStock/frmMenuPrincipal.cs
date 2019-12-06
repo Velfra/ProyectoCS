@@ -51,5 +51,14 @@ namespace ControlStock
             frmEntradaSalida frmEnSal = new frmEntradaSalida();
             frmEnSal.Show();
         }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("--SALAMNDRA AGIL--  SISTEMA DE CONTROL DE STOCK \n" +
+                "" +
+                "" +
+                "OSVALDO VELAZQUEZ\n" +
+                "MATHIAZ DIAZ");
+        }
     }
 }

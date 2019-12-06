@@ -149,36 +149,28 @@ namespace ClasesNegocio
             return cmd;
         }
 
-        public static List<Producto> BuscarProducto()
+        public static Producto ObtenerProducto(int id)
         {
-            Producto producto;
-            listaProducto.Clear();
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            Producto producto = null;
 
+            if (listaProducto.Count == 0)
             {
-                con.Open();
-                string textoCMD = "Select * from Proveedor ";
-
-                SqlCommand cmd = new SqlCommand(textoCMD, con);
-
-                SqlDataReader elLectorDeDatos = cmd.ExecuteReader();
-
-                while (elLectorDeDatos.Read())
-                {
-                    producto = new Producto();
-                    producto.Id = elLectorDeDatos.GetInt32(0);
-                    producto.Nombre = elLectorDeDatos.GetString(1);
-                    
-                    listaProducto.Add(producto);
-                }
-
-                return listaProducto;
-
+                Producto.ObtenerProductos();
             }
 
+            foreach (Producto p in listaProducto)
+            {
+                if (p.Id == id)
+                {
+                    producto = p;
+                    break;
+                }
+            }
+
+            return producto;
         }
 
-
+        
 
     }
 }
