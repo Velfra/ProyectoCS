@@ -59,9 +59,15 @@ namespace ControlStock
             this.Close();
         }
 
-        private void lblConfigServer_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
-            //frmConfiguracion.ShowDialog();
+
+        }
+
+        private void lblCreateuser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmCrearUser frmus = new frmCrearUser();
+            frmus.Show();
         }
     }
 }

@@ -36,8 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.lblConfigServer = new System.Windows.Forms.LinkLabel();
             this.ptbUser = new System.Windows.Forms.PictureBox();
+            this.lblCreateuser = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ptbUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,18 +47,19 @@
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Maroon;
-            this.label3.Location = new System.Drawing.Point(27, 26);
+            this.label3.Location = new System.Drawing.Point(20, 21);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(209, 29);
+            this.label3.Size = new System.Drawing.Size(158, 24);
             this.label3.TabIndex = 13;
             this.label3.Text = "Acceso al Sistema";
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(162, 194);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSalir.Location = new System.Drawing.Point(122, 158);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(114, 36);
+            this.btnSalir.Size = new System.Drawing.Size(86, 29);
             this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -66,10 +67,10 @@
             // 
             // btnAcceder
             // 
-            this.btnAcceder.Location = new System.Drawing.Point(21, 194);
-            this.btnAcceder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAcceder.Location = new System.Drawing.Point(16, 158);
+            this.btnAcceder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAcceder.Name = "btnAcceder";
-            this.btnAcceder.Size = new System.Drawing.Size(111, 36);
+            this.btnAcceder.Size = new System.Drawing.Size(83, 29);
             this.btnAcceder.TabIndex = 11;
             this.btnAcceder.Text = "Acceder";
             this.btnAcceder.UseVisualStyleBackColor = true;
@@ -79,9 +80,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(18, 137);
+            this.label2.Location = new System.Drawing.Point(14, 111);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 17);
+            this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Contraseña";
             // 
@@ -90,59 +92,59 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(18, 82);
+            this.label1.Location = new System.Drawing.Point(14, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 17);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Usuario";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(105, 134);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPassword.Location = new System.Drawing.Point(79, 109);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(131, 22);
+            this.txtPassword.Size = new System.Drawing.Size(99, 20);
             this.txtPassword.TabIndex = 8;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(104, 82);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsuario.Location = new System.Drawing.Point(78, 67);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(132, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtUsuario.TabIndex = 7;
-            // 
-            // lblConfigServer
-            // 
-            this.lblConfigServer.AutoSize = true;
-            this.lblConfigServer.Enabled = false;
-            this.lblConfigServer.Location = new System.Drawing.Point(260, 252);
-            this.lblConfigServer.Name = "lblConfigServer";
-            this.lblConfigServer.Size = new System.Drawing.Size(172, 17);
-            this.lblConfigServer.TabIndex = 14;
-            this.lblConfigServer.TabStop = true;
-            this.lblConfigServer.Text = "Configuración del Sistema";
-            this.lblConfigServer.Visible = false;
-            this.lblConfigServer.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblConfigServer_LinkClicked);
             // 
             // ptbUser
             // 
             this.ptbUser.Image = ((System.Drawing.Image)(resources.GetObject("ptbUser.Image")));
-            this.ptbUser.Location = new System.Drawing.Point(282, 61);
+            this.ptbUser.Location = new System.Drawing.Point(212, 50);
+            this.ptbUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ptbUser.Name = "ptbUser";
-            this.ptbUser.Size = new System.Drawing.Size(133, 106);
+            this.ptbUser.Size = new System.Drawing.Size(100, 86);
             this.ptbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbUser.TabIndex = 15;
             this.ptbUser.TabStop = false;
             // 
+            // lblCreateuser
+            // 
+            this.lblCreateuser.AutoSize = true;
+            this.lblCreateuser.Location = new System.Drawing.Point(252, 193);
+            this.lblCreateuser.Name = "lblCreateuser";
+            this.lblCreateuser.Size = new System.Drawing.Size(60, 13);
+            this.lblCreateuser.TabIndex = 16;
+            this.lblCreateuser.TabStop = true;
+            this.lblCreateuser.Text = "Registrarse";
+            this.lblCreateuser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCreateuser_LinkClicked);
+            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 278);
+            this.ClientSize = new System.Drawing.Size(333, 226);
+            this.Controls.Add(this.lblCreateuser);
             this.Controls.Add(this.ptbUser);
-            this.Controls.Add(this.lblConfigServer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnAcceder);
@@ -152,9 +154,11 @@
             this.Controls.Add(this.txtUsuario);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,7 +174,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.LinkLabel lblConfigServer;
         private System.Windows.Forms.PictureBox ptbUser;
+        private System.Windows.Forms.LinkLabel lblCreateuser;
     }
 }
