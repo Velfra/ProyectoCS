@@ -1,10 +1,13 @@
 ﻿using ClasesNegocio;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -222,5 +225,87 @@ namespace ControlStock
         {
            
         }
+
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            Document document = new Document();
+            PdfWriter.GetInstance(document, new FileStream("C:/Users/Velfra/Desktop/facultad/intro C#/ListaProductos.pdf", FileMode.Create));
+            document.Open();
+            Paragraph p = new Paragraph();
+
+            PdfPTable table = new PdfPTable(3);
+
+            //actual width of table in points
+
+            table.TotalWidth = 400f;
+
+            //fix the absolute width of the table
+
+            table.LockedWidth = true;
+
+            //relative col widths in proportions - 1/3 and 2/3
+
+            float[] widths = new float[] { 5f, 5f, 3f};
+
+            table.SetWidths(widths);
+
+            table.HorizontalAlignment = 1;
+
+            //leave a gap before and after the table
+
+            table.SpacingBefore = 20f;
+
+            table.SpacingAfter = 30f;
+
+            PdfPCell cell = new PdfPCell(new Phrase("Productos"));
+   
+            cell.PaddingLeft = 20f;
+            cell.PaddingTop = 4f;
+            cell.Colspan = 3;
+
+            cell.Border = 0;
+
+            cell.HorizontalAlignment = 1;
+
+            table.AddCell(cell);
+
+            table.AddCell("Nombre");
+  
+            table.AddCell("Proveedor");
+
+            table.AddCell("Stock");
+
+            using (SqlConnection conn = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                string query = "SELECT Nombre,Proveedor.RazonSocial,Cantidad FROM Producto INNER JOIN Proveedor On Proveedor.id = Producto.Proveedor";
+
+                SqlCommand cmd = new SqlCommand(query,conn);
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+
+                    {
+
+                        while (rdr.Read())
+                        {
+                            table.AddCell(rdr[0].ToString());
+                            table.AddCell(rdr[1].ToString());
+                            table.AddCell(rdr[2].ToString());
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.EscribirLog("SqlException", ex.Message);
+                }
+                document.Add(table);
+            }
+            document.Add(p);
+            document.Close();
+        }
+
+
     }
 }

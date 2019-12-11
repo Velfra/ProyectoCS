@@ -55,6 +55,7 @@
             this.dgvProducto = new System.Windows.Forms.DataGridView();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnPdf = new System.Windows.Forms.Button();
             this.tbcProducto.SuspendLayout();
             this.tbpProducto.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -282,6 +283,7 @@
             // 
             // tbpMantenimientoProducto
             // 
+            this.tbpMantenimientoProducto.Controls.Add(this.btnPdf);
             this.tbpMantenimientoProducto.Controls.Add(this.dgvProducto);
             this.tbpMantenimientoProducto.Controls.Add(this.lblDescripcion);
             this.tbpMantenimientoProducto.Controls.Add(this.txtBuscar);
@@ -313,10 +315,10 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvProducto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvProducto.Location = new System.Drawing.Point(0, 56);
+            this.dgvProducto.Location = new System.Drawing.Point(0, 92);
             this.dgvProducto.Name = "dgvProducto";
             this.dgvProducto.RowHeadersVisible = false;
-            this.dgvProducto.Size = new System.Drawing.Size(607, 341);
+            this.dgvProducto.Size = new System.Drawing.Size(607, 305);
             this.dgvProducto.TabIndex = 2;
             this.dgvProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellClick);
             this.dgvProducto.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducto_CellContentDoubleClick_1);
@@ -326,7 +328,7 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(78, 21);
+            this.lblDescripcion.Location = new System.Drawing.Point(21, 38);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(88, 21);
             this.lblDescripcion.TabIndex = 1;
@@ -334,11 +336,21 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(200, 24);
+            this.txtBuscar.Location = new System.Drawing.Point(143, 41);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(289, 20);
             this.txtBuscar.TabIndex = 0;
             this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
+            // 
+            // btnPdf
+            // 
+            this.btnPdf.Location = new System.Drawing.Point(483, 28);
+            this.btnPdf.Name = "btnPdf";
+            this.btnPdf.Size = new System.Drawing.Size(102, 31);
+            this.btnPdf.TabIndex = 3;
+            this.btnPdf.Text = "Exportar Datos";
+            this.btnPdf.UseVisualStyleBackColor = true;
+            this.btnPdf.Click += new System.EventHandler(this.btnPdf_Click);
             // 
             // frmProducto
             // 
@@ -391,5 +403,6 @@
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.DataGridView dgvProducto;
+        private System.Windows.Forms.Button btnPdf;
     }
 }
