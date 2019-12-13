@@ -340,7 +340,14 @@ namespace ControlStock
            
             cboProducto.Text = this.dgvMovimiento.CurrentRow.Cells[0].Value.ToString();
             nudStock.Value = Convert.ToInt32(this.dgvMovimiento.CurrentRow.Cells[1].Value);
-            
+            //if (Convert.ToBoolean(this.dgvMovimiento.CurrentRow.Cells[2].Value))
+            //{
+            //    rbnEntrada.Checked = true;
+            //}
+            //else
+            //{
+            //    rbnSalida.Checked = true;
+            //}
             nudCantidad.Value = Convert.ToInt32(this.dgvMovimiento.CurrentRow.Cells[3].Value);
             
             tbcLista.SelectedIndex = 0;
