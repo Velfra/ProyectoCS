@@ -11,18 +11,14 @@ namespace ClasesNegocio
    public class Categoria
     {
         public int Id { get; set; }
-        
-        public string Nombre { get; set; }
-        
+        public string Nombre { get; set; }       
         public string Descripcion { get; set; }
-
         public static List<Categoria> listaCategoria = new List<Categoria>();
 
 
         public static void AgregarCategoria(Categoria c)
         {
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-
             {
                 con.Open();
                 string textoCmd = "insert into Categoria (Nombre,Descripcion) VALUES (@Nombre, @Descripcion)";
@@ -49,7 +45,7 @@ namespace ClasesNegocio
             }
         }
 
-        public static void EditarCategoria(Categoria c, int indice)
+        public static void EditarCategoria(Categoria c)
         {
 
             using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
@@ -97,23 +93,14 @@ namespace ClasesNegocio
         }
 
         private SqlCommand ObtenerParametros(SqlCommand cmd, Boolean id = false)
-
         {
-            
-            SqlParameter p1 = new SqlParameter("@Nombre", this.Nombre);
-           
-            SqlParameter p2 = new SqlParameter("@Descripcion", this.Descripcion);
-         
-            
-            p1.SqlDbType = SqlDbType.VarChar;
-            
-            p2.SqlDbType = SqlDbType.VarChar;
-            
-       
-            cmd.Parameters.Add(p1);
-            
+            SqlParameter p1 = new SqlParameter("@Nombre", this.Nombre);          
+            SqlParameter p2 = new SqlParameter("@Descripcion", this.Descripcion);                   
+            p1.SqlDbType = SqlDbType.VarChar;           
+            p2.SqlDbType = SqlDbType.VarChar;                 
+            cmd.Parameters.Add(p1);           
             cmd.Parameters.Add(p2);
-           
+         
             if (id == true)
             {
                 cmd = ObtenerParametrosId(cmd);

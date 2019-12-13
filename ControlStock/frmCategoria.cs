@@ -13,6 +13,8 @@ namespace ControlStock
 {
     public partial class frmCategoria : Form
     {
+        
+        int CategoriaID;
         string modo;
         public frmCategoria()
         {
@@ -29,17 +31,8 @@ namespace ControlStock
             }
             else if (modo == "EDITAR")
             {
-                if (this.lstCategoria.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Favor seleccione una fila");
-                }
-
-                else
-                {
-                    int indice = lstCategoria.SelectedIndex;
-                    Categoria.EditarCategoria(p, indice);
+                    Categoria.EditarCategoria(p);
                     ActualizarListaCategorias();
-                }
 
             }
 
@@ -51,6 +44,7 @@ namespace ControlStock
         private Categoria ObtenerDatosFormulario()
         {
             Categoria categoria = new Categoria();
+            categoria.Id = CategoriaID;
             categoria.Nombre = txtNombre.Text;
             categoria.Descripcion = txtDescripcion.Text;
             return categoria;
@@ -75,7 +69,7 @@ namespace ControlStock
             btnCancelar.Enabled = true;
             btnLimpiar.Enabled = true;
 
-            lstCategoria.Enabled = false;
+            dgvCategoria.Enabled = false;
             btnAgregar.Enabled = false;
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
@@ -93,17 +87,10 @@ namespace ControlStock
 
 
         private void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (this.lstCategoria.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
+        {  
                 modo = "EDITAR";
                 DesbloquearFormularios();
-                txtNombre.Focus();
-            }
+                txtNombre.Focus();         
         }
 
         private void frmCategoria_Load(object sender, EventArgs e)
@@ -115,8 +102,8 @@ namespace ControlStock
 
         private void ActualizarListaCategorias()
         {
-            lstCategoria.DataSource = null;
-            lstCategoria.DataSource = Categoria.ObtenerCategorias();
+            dgvCategoria.DataSource = null;
+            dgvCategoria.DataSource = Categoria.ObtenerCategorias();
         }
 
 
@@ -130,7 +117,7 @@ namespace ControlStock
             btnCancelar.Enabled = false;
             btnLimpiar.Enabled = false;
 
-            lstCategoria.Enabled = true;
+            dgvCategoria.Enabled = true;
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;
             btnModificar.Enabled = true;
@@ -138,17 +125,12 @@ namespace ControlStock
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (this.lstCategoria.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Favor seleccione una fila");
-            }
-            else
-            {
-                Categoria p = (Categoria)lstCategoria.SelectedItem;
+
+               var p = ObtenerDatosFormulario();
                 Categoria.EliminarCategoria(p);
                 ActualizarListaCategorias();
                 LimpiarFormulario();
-            }
+           
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -162,24 +144,20 @@ namespace ControlStock
             BloquearFormulario();
         }
 
-        private void lstCategoria_DoubleClick(object sender, EventArgs e)
-        {
-            Categoria p = (Categoria)lstCategoria.SelectedItem;
 
-            if (p != null)
-            {
-                
-                txtDescripcion.Text = p.Descripcion;
-                
-                txtNombre.Text = p.Nombre;
-            }
-
-            tbcCategoria.SelectedIndex = 0;
-        }
 
         private void tbcCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             ActualizarListaCategorias();
+        }
+
+        private void dgvCategoria_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CategoriaID = Convert.ToInt32(this.dgvCategoria.CurrentRow.Cells[0].Value);
+            txtNombre.Text = this.dgvCategoria.CurrentRow.Cells[1].Value.ToString();
+            txtDescripcion.Text = this.dgvCategoria.CurrentRow.Cells[2].Value.ToString();
+            tbcCategoria.SelectedIndex = 0;
+            btnAgregar.Enabled = false;
         }
     }
 }

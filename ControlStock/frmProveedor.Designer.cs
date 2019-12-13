@@ -48,9 +48,9 @@
             this.txtNombreProveedor = new System.Windows.Forms.TextBox();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.tbpConsulta = new System.Windows.Forms.TabPage();
-            this.dgvProveedor = new System.Windows.Forms.DataGridView();
             this.lblProveedorDes = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.dgvProveedor = new System.Windows.Forms.DataGridView();
             this.tbcPrincipal.SuspendLayout();
             this.tbpABM.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -65,7 +65,7 @@
             this.tbcPrincipal.Controls.Add(this.tbpConsulta);
             this.tbcPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbcPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tbcPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbcPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.tbcPrincipal.Name = "tbcPrincipal";
             this.tbcPrincipal.SelectedIndex = 0;
             this.tbcPrincipal.Size = new System.Drawing.Size(545, 417);
@@ -77,9 +77,9 @@
             this.tbpABM.Controls.Add(this.groupBox2);
             this.tbpABM.Controls.Add(this.groupBox1);
             this.tbpABM.Location = new System.Drawing.Point(4, 22);
-            this.tbpABM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpABM.Margin = new System.Windows.Forms.Padding(2);
             this.tbpABM.Name = "tbpABM";
-            this.tbpABM.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpABM.Padding = new System.Windows.Forms.Padding(2);
             this.tbpABM.Size = new System.Drawing.Size(537, 391);
             this.tbpABM.TabIndex = 0;
             this.tbpABM.Text = "ABM";
@@ -91,9 +91,9 @@
             this.groupBox2.Controls.Add(this.btnModificar);
             this.groupBox2.Controls.Add(this.btnAgregar);
             this.groupBox2.Location = new System.Drawing.Point(99, 264);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(361, 103);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
@@ -102,7 +102,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(149, 42);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(61, 28);
             this.btnEliminar.TabIndex = 13;
@@ -113,7 +113,7 @@
             // btnModificar
             // 
             this.btnModificar.Location = new System.Drawing.Point(240, 42);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(61, 28);
             this.btnModificar.TabIndex = 12;
@@ -124,7 +124,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(63, 42);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(61, 28);
             this.btnAgregar.TabIndex = 11;
@@ -146,9 +146,9 @@
             this.groupBox1.Controls.Add(this.txtNombreProveedor);
             this.groupBox1.Controls.Add(this.lblProveedor);
             this.groupBox1.Location = new System.Drawing.Point(99, 22);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(361, 221);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
@@ -157,7 +157,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(274, 150);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(61, 28);
             this.btnCancelar.TabIndex = 10;
@@ -168,7 +168,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(274, 108);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(61, 28);
             this.btnLimpiar.TabIndex = 9;
@@ -179,7 +179,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(274, 60);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(61, 28);
             this.btnGuardar.TabIndex = 8;
@@ -190,7 +190,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(72, 165);
-            this.txtMail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMail.Margin = new System.Windows.Forms.Padding(2);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(146, 20);
             this.txtMail.TabIndex = 7;
@@ -208,7 +208,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(72, 125);
-            this.txtTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(146, 20);
             this.txtTelefono.TabIndex = 5;
@@ -226,7 +226,7 @@
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(72, 87);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(146, 20);
             this.txtDireccion.TabIndex = 3;
@@ -244,7 +244,7 @@
             // txtNombreProveedor
             // 
             this.txtNombreProveedor.Location = new System.Drawing.Point(72, 49);
-            this.txtNombreProveedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombreProveedor.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombreProveedor.Name = "txtNombreProveedor";
             this.txtNombreProveedor.Size = new System.Drawing.Size(146, 20);
             this.txtNombreProveedor.TabIndex = 1;
@@ -265,22 +265,13 @@
             this.tbpConsulta.Controls.Add(this.txtBuscar);
             this.tbpConsulta.Controls.Add(this.dgvProveedor);
             this.tbpConsulta.Location = new System.Drawing.Point(4, 22);
-            this.tbpConsulta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpConsulta.Margin = new System.Windows.Forms.Padding(2);
             this.tbpConsulta.Name = "tbpConsulta";
-            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(2);
             this.tbpConsulta.Size = new System.Drawing.Size(537, 391);
             this.tbpConsulta.TabIndex = 1;
             this.tbpConsulta.Text = "Consulta";
             this.tbpConsulta.UseVisualStyleBackColor = true;
-            // 
-            // dgvProveedor
-            // 
-            this.dgvProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProveedor.Location = new System.Drawing.Point(0, 71);
-            this.dgvProveedor.Name = "dgvProveedor";
-            this.dgvProveedor.Size = new System.Drawing.Size(537, 324);
-            this.dgvProveedor.TabIndex = 0;
-            this.dgvProveedor.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedor_CellContentDoubleClick);
             // 
             // lblProveedorDes
             // 
@@ -300,6 +291,15 @@
             this.txtBuscar.TabIndex = 2;
             this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
             // 
+            // dgvProveedor
+            // 
+            this.dgvProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProveedor.Location = new System.Drawing.Point(0, 71);
+            this.dgvProveedor.Name = "dgvProveedor";
+            this.dgvProveedor.Size = new System.Drawing.Size(537, 324);
+            this.dgvProveedor.TabIndex = 0;
+            this.dgvProveedor.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedor_CellContentDoubleClick);
+            // 
             // frmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +307,7 @@
             this.ClientSize = new System.Drawing.Size(545, 417);
             this.Controls.Add(this.tbcPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedor";
