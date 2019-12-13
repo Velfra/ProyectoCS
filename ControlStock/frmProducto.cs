@@ -87,23 +87,24 @@ namespace ControlStock
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var p = ObtenerDatosFormulario();
-
-
-            if (modo == "AGREGAR")
-            {
-                Producto.AgregarProducto(p);
-            }
-            else if (modo == "EDITAR")
-            {
-                    Producto.EditarProducto(p);
-                    ActualizarListaProductos();
+                if(ValidarCampos())
+                { 
+                    if (modo == "AGREGAR")
+                    {
+                        Producto.AgregarProducto(p);
+                    }
+                    else if (modo == "EDITAR")
+                    {
+                            Producto.EditarProducto(p);
+                            ActualizarListaProductos();
                 
 
-            }
+                    }
 
-            LimpiarFormulario();
-            ActualizarListaProductos();
-            BloquearFormulario();
+                    LimpiarFormulario();
+                    ActualizarListaProductos();
+                    BloquearFormulario();
+                }
         }
 
         private void ActualizarListaProductos()
@@ -225,7 +226,57 @@ namespace ControlStock
         {
            
         }
+        private bool ValidarCampos()
+        {
+            if (String.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío", "Error");
+                txtNombre.Focus();
+                return false;
+            }
+            if (txtNombre.Text.Length < 3 || txtNombre.Text.Length > 30)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombre.Focus();
+                return false;
+            }
+            if (nudCantidad.Value <= 0 || nudCantidad.Value > 1000)
+            {
+                MessageBox.Show("Por favor ingrese una cantidad", "Error");
+                nudCantidad.Focus();
+                return false;
+            }
+            
 
+            if (nudPrecioCosto.Value <= 0)
+            {
+                MessageBox.Show("Por favor ingrese un precio", "Error");
+                nudPrecioCosto.Focus();
+                return false;
+            }
+            if (cboCategoria.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor seleccione una Categoria", "Error");
+                cboCategoria.Focus();
+                return false;
+            }
+            var pro = (Proveedor)cboProveedor.SelectedItem;
+            if (pro == null)
+            {
+                MessageBox.Show("Por favor seleccione un Proveedor", "Error");
+                cboProveedor.Focus();
+                return false;
+            }
+
+            if (String.IsNullOrWhiteSpace(pro.Email))
+            {
+                MessageBox.Show("El proveedor no posee Email, por favor verifique", "Error");
+                cboProveedor.Focus();
+                return false;
+            }
+
+            return true;
+        }
         private void btnPdf_Click(object sender, EventArgs e)
         {
             Document document = new Document();
