@@ -34,7 +34,6 @@ namespace ControlStock
         private EntradaProductos ObtenerDatosFormulario()
         {
             EntradaProductos movimiento = new EntradaProductos();
-            movimiento.Id = productoID;
             movimiento.producto = (Producto)cboProducto.SelectedValue;
             movimiento.Stock = (int)nudStock.Value;
             if (rbnEntrada.Checked)
@@ -124,6 +123,7 @@ namespace ControlStock
                 Producto p = (Producto)cboProducto.SelectedItem;
                 nudStock.Value = p.Cantidad;
                 valorStock =Convert.ToInt32(nudStock.Value);
+                productoID = p.Id;
             }
             else
             {
@@ -133,7 +133,6 @@ namespace ControlStock
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            int mov;
             var p = ObtenerDatosFormulario();
 
 
@@ -141,22 +140,18 @@ namespace ControlStock
             {
                 if (rbnEntrada.Checked)
                 {
-                    Producto h = (Producto)cboProducto.SelectedItem;
-
-                    h.Cantidad = Convert.ToInt32(nudStock.Value + nudCantidad.Value);
-                    
-                    EntradaProductos.ActualizarStock(p);
+                   
+                    SumarStock(p);      
                 }
                 else
                 {
-
+                    RestarStock(p); 
                 }
 
             }
             else if (modo == "EDITAR")
             {
-                EntradaProductos.EditarProducto(p);
-             //   ActualizarListaProductos()
+               
             }
 
             LimpiarFormulario();
@@ -164,11 +159,48 @@ namespace ControlStock
             BloquearFormulario();
         }
 
-
-        private void ActualizarStock()
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string stock = "UPDATE Producto P INNER JOIN Venta V  ON P.codigoproducto = V.codigoproducto  SET P.cantidad = P.cantidad - V.cantidad";
+
         }
 
+        private void RestarStock(EntradaProductos p)
+        {
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                if (p.Cantidad > p.Stock)
+                {
+                    MessageBox.Show("No Pueden salir mas productos de los que hay en stock", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    con.Open();
+                    string textoCmd = "UPDATE Producto SET cantidad = " + p.Stock + " -" + p.Cantidad + " where Id = " + productoID;
+                    SqlCommand cmd = new SqlCommand(textoCmd, con);
+                    cmd.ExecuteNonQuery();
+                }
+                
+            }
+           
+        }
+
+        private void SumarStock(EntradaProductos p)
+        {
+            
+            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
+            {
+                con.Open();
+                string textoCmd = "UPDATE Producto SET cantidad = "+ p.Stock+ " +"+ p.Cantidad+" where Id = "+productoID;
+                SqlCommand cmd = new SqlCommand(textoCmd, con);
+                cmd.ExecuteNonQuery();
+            }
+
+        }
+
+        private void ActualizarListaMovimiento()
+        {
+            dgvMovimiento.DataSource = null;
+            dgvMovimiento.DataSource = EntradaProductos.ObtenerMovimiento();
+        }
     }
 }

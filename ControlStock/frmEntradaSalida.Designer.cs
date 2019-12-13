@@ -48,7 +48,7 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.cboProducto = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMovimiento = new System.Windows.Forms.DataGridView();
             this.tbcLista.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -56,7 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMovimiento)).BeginInit();
             this.SuspendLayout();
             // 
             // tbcLista
@@ -273,7 +273,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.dgvMovimiento);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -282,13 +282,14 @@
             this.tabPage2.Text = "Lista";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvMovimiento
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 61);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(572, 277);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvMovimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMovimiento.Location = new System.Drawing.Point(0, 61);
+            this.dgvMovimiento.Name = "dgvMovimiento";
+            this.dgvMovimiento.Size = new System.Drawing.Size(572, 277);
+            this.dgvMovimiento.TabIndex = 0;
+            this.dgvMovimiento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // frmEntradaSalida
             // 
@@ -307,7 +308,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMovimiento)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -334,6 +335,6 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.ComboBox cboProducto;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMovimiento;
     }
 }

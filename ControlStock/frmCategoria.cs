@@ -19,11 +19,9 @@ namespace ControlStock
             InitializeComponent();
         }
 
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var p = ObtenerDatosFormulario();
-
 
             if (modo == "AGREGAR")
             {
@@ -31,7 +29,6 @@ namespace ControlStock
             }
             else if (modo == "EDITAR")
             {
-
                 if (this.lstCategoria.SelectedItems.Count == 0)
                 {
                     MessageBox.Show("Favor seleccione una fila");
@@ -44,24 +41,18 @@ namespace ControlStock
                     ActualizarListaCategorias();
                 }
 
-
             }
 
             LimpiarFormulario();
             ActualizarListaCategorias();
             BloquearFormulario();
-
-
         }
-
 
         private Categoria ObtenerDatosFormulario()
         {
             Categoria categoria = new Categoria();
             categoria.Nombre = txtNombre.Text;
             categoria.Descripcion = txtDescripcion.Text;
-            
-
             return categoria;
 
         }
@@ -119,6 +110,7 @@ namespace ControlStock
         {
             ActualizarListaCategorias();
             BloquearFormulario();
+            
         }
 
         private void ActualizarListaCategorias()
@@ -183,6 +175,11 @@ namespace ControlStock
             }
 
             tbcCategoria.SelectedIndex = 0;
+        }
+
+        private void tbcCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarListaCategorias();
         }
     }
 }
