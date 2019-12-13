@@ -21,6 +21,7 @@ namespace ClasesNegocio
         public int Stock { get; set; }
         public Movimiento movimiento { get; set; }
         public int Cantidad { get; set; }
+        public DateTime FechaMovimiento { get; set; }
         public static List<EntradaProductos> listaMovimiento = new List<EntradaProductos>();
 
 
@@ -30,7 +31,7 @@ namespace ClasesNegocio
 
             {
                 con.Open();
-                string textoCmd = "insert into Movimiento (producto, Stock, movimiento, Cantidad) VALUES (@Producto, @Stock, @Movimiento, @Cantidad)";
+                string textoCmd = "insert into Movimiento (producto, Stock, movimiento, Cantidad, fechaMovimiento) VALUES (@Producto, @Stock, @Movimiento, @Cantidad, @FechaMovimiento)";
                 SqlCommand cmd = new SqlCommand(textoCmd, con);
                 cmd = p.ObtenerParametros(cmd);
                 cmd.ExecuteNonQuery();
@@ -87,9 +88,17 @@ namespace ClasesNegocio
                     movimieto.Id = elLectorDeDatos.GetInt32(0);
                     movimieto.producto = Producto.ObtenerProducto(elLectorDeDatos.GetInt32(1));
                     movimieto.Stock = elLectorDeDatos.GetInt32(2);
-                    movimieto.movimiento = (Movimiento)elLectorDeDatos.GetInt32(3);
+                    if (movimieto.movimiento ==0)
+                    {
+                        movimieto.movimiento = Movimiento.Entrada;
+                    }
+                    else
+                    {
+                        movimieto.movimiento = Movimiento.Salida;
+                    }         
                     movimieto.Cantidad = elLectorDeDatos.GetInt32(4);
-                 
+                    movimieto.FechaMovimiento = elLectorDeDatos.GetDateTime(5);
+
                     listaMovimiento.Add(movimieto);
                 }
                 return listaMovimiento;
@@ -102,17 +111,20 @@ namespace ClasesNegocio
             SqlParameter p1 = new SqlParameter("@Producto", this.producto.Id);
             SqlParameter p2 = new SqlParameter("@Stock", this.Stock);
             SqlParameter p3 = new SqlParameter("@Movimiento", this.movimiento);
-            SqlParameter p4 = new SqlParameter("@Cantidad", this.Cantidad);      
+            SqlParameter p4 = new SqlParameter("@Cantidad", this.Cantidad);
+            SqlParameter p5 = new SqlParameter("@FechaMovimiento", DateTime.Today);
 
             p1.SqlDbType = SqlDbType.Int;
             p2.SqlDbType = SqlDbType.Int;
             p3.SqlDbType = SqlDbType.Int;
             p4.SqlDbType = SqlDbType.Int;
+            p5.SqlDbType = SqlDbType.DateTime;
 
             cmd.Parameters.Add(p1);
             cmd.Parameters.Add(p2);
             cmd.Parameters.Add(p3);
             cmd.Parameters.Add(p4);
+            cmd.Parameters.Add(p5);
 
             if (id == true)
             {

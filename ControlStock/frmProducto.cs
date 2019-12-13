@@ -135,8 +135,9 @@ namespace ControlStock
         private void btnModificar_Click(object sender, EventArgs e)
         {
                 modo = "EDITAR";
-                DesbloquearFormulario();
-                txtNombre.Focus();
+            DesbloquearFormulario();
+            nudCantidad.Enabled = false;
+            txtNombre.Focus();
 
         }
 
