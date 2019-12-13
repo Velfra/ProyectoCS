@@ -25,20 +25,25 @@ namespace ControlStock
         {
             var p = ObtenerDatosFormulario();
 
-            if (modo == "AGREGAR")
+            if(ValidarCampos())
             {
-                Categoria.AgregarCategoria(p);
-            }
-            else if (modo == "EDITAR")
-            {
+                if (modo == "AGREGAR")
+                {
+                    Categoria.AgregarCategoria(p);
+                }
+                else if (modo == "EDITAR")
+                {
                     Categoria.EditarCategoria(p);
                     ActualizarListaCategorias();
 
-            }
+                }
 
-            LimpiarFormulario();
-            ActualizarListaCategorias();
-            BloquearFormulario();
+                LimpiarFormulario();
+                ActualizarListaCategorias();
+                BloquearFormulario();
+
+            }
+            
         }
 
         private Categoria ObtenerDatosFormulario()
@@ -85,6 +90,35 @@ namespace ControlStock
            
         }
 
+        private bool ValidarCampos()
+        {
+            if (String.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío", "Error");
+                txtNombre.Focus();
+                return false;
+            }
+            if (txtNombre.Text.Length < 3 || txtNombre.Text.Length > 30)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombre.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("La descripcion no puede estar vacía", "Error");
+                txtDescripcion.Focus();
+                return false;
+            }
+            if (txtDescripcion.Text.Length < 3 || txtDescripcion.Text.Length > 140)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDescripcion.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {  
