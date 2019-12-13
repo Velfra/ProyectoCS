@@ -38,64 +38,70 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
-            this.btnCrear.Location = new System.Drawing.Point(281, 32);
+            this.btnCrear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(236)))), ((int)(((byte)(184)))));
+            this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCrear.Location = new System.Drawing.Point(233, 36);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(93, 69);
+            this.btnCrear.Size = new System.Drawing.Size(97, 33);
             this.btnCrear.TabIndex = 15;
-            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Text = "Registrar";
+            this.btnCrear.UseVisualStyleBackColor = false;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 82);
+            this.label2.Location = new System.Drawing.Point(22, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 17);
+            this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Contraseña";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 32);
+            this.label1.Location = new System.Drawing.Point(22, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 17);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "Usuario";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(110, 79);
+            this.txtPassword.Location = new System.Drawing.Point(96, 64);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(119, 22);
+            this.txtPassword.Size = new System.Drawing.Size(104, 20);
             this.txtPassword.TabIndex = 12;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(110, 32);
+            this.txtUsuario.Location = new System.Drawing.Point(96, 26);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(119, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(104, 20);
             this.txtUsuario.TabIndex = 11;
             // 
             // frmCrearUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 133);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(211)))), ((int)(((byte)(146)))));
+            this.ClientSize = new System.Drawing.Size(352, 108);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsuario);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmCrearUser";
-            this.Text = "frmCrearUser";
+            this.Text = "Registro Usuario";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -356,7 +356,5 @@ namespace ControlStock
             document.Add(p);
             document.Close();
         }
-
-
     }
 }
