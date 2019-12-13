@@ -34,6 +34,7 @@ namespace ControlStock
         private EntradaProductos ObtenerDatosFormulario()
         {
             EntradaProductos movimiento = new EntradaProductos();
+            movimiento.Id = productoID;
             movimiento.producto = (Producto)cboProducto.SelectedValue;
             movimiento.Stock = (int)nudStock.Value;
             if (rbnEntrada.Checked)
@@ -98,6 +99,33 @@ namespace ControlStock
             cboProducto.Focus();
         }
 
+        private bool ValidarCampos()
+        {
+            
+            if (nudCantidad.Value <= 0 || nudCantidad.Value > 1000)
+            {
+                MessageBox.Show("Por favor ingrese una cantidad", "Error");
+                nudCantidad.Focus();
+                return false;
+            }
+            
+
+            if (nudStock.Value <= 0)
+            {
+                MessageBox.Show("Por favor ingrese un numero", "Error");
+                nudStock.Focus();
+                return false;
+            }
+            if (cboProducto.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor seleccione un Producto", "Error");
+                cboProducto.Focus();
+                return false;
+            }
+            
+            return true;
+        }
+
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
@@ -123,7 +151,6 @@ namespace ControlStock
                 Producto p = (Producto)cboProducto.SelectedItem;
                 nudStock.Value = p.Cantidad;
                 valorStock =Convert.ToInt32(nudStock.Value);
-                productoID = p.Id;
             }
             else
             {
@@ -133,74 +160,45 @@ namespace ControlStock
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            int mov;
             var p = ObtenerDatosFormulario();
 
-
-            if (modo == "AGREGAR")
+            if (ValidarCampos())
             {
-                if (rbnEntrada.Checked)
+                if (modo == "AGREGAR")
                 {
-                   
-                    SumarStock(p);      
+                    if (rbnEntrada.Checked)
+                    {
+                        Producto h = (Producto)cboProducto.SelectedItem;
+
+                        h.Cantidad = Convert.ToInt32(nudStock.Value + nudCantidad.Value);
+
+                        EntradaProductos.ActualizarStock(p);
+                    }
+                    else
+                    {
+
+                    }
+
                 }
-                else
+                else if (modo == "EDITAR")
                 {
-                    RestarStock(p); 
+                    EntradaProductos.EditarProducto(p);
+                    //   ActualizarListaProductos()
                 }
 
+                LimpiarFormulario();
+                // ActualizarListaProductos();
+                BloquearFormulario();
             }
-            else if (modo == "EDITAR")
-            {
-               
-            }
-
-            LimpiarFormulario();
-           // ActualizarListaProductos();
-            BloquearFormulario();
+              
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void ActualizarStock()
         {
-
+            string stock = "UPDATE Producto P INNER JOIN Venta V  ON P.codigoproducto = V.codigoproducto  SET P.cantidad = P.cantidad - V.cantidad";
         }
 
-        private void RestarStock(EntradaProductos p)
-        {
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
-                if (p.Cantidad > p.Stock)
-                {
-                    MessageBox.Show("No Pueden salir mas productos de los que hay en stock", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-                }
-                else
-                {
-                    con.Open();
-                    string textoCmd = "UPDATE Producto SET cantidad = " + p.Stock + " -" + p.Cantidad + " where Id = " + productoID;
-                    SqlCommand cmd = new SqlCommand(textoCmd, con);
-                    cmd.ExecuteNonQuery();
-                }
-                
-            }
-           
-        }
-
-        private void SumarStock(EntradaProductos p)
-        {
-            
-            using (SqlConnection con = new SqlConnection(SqlServer.CADENA_CONEXION))
-            {
-                con.Open();
-                string textoCmd = "UPDATE Producto SET cantidad = "+ p.Stock+ " +"+ p.Cantidad+" where Id = "+productoID;
-                SqlCommand cmd = new SqlCommand(textoCmd, con);
-                cmd.ExecuteNonQuery();
-            }
-
-        }
-
-        private void ActualizarListaMovimiento()
-        {
-            dgvMovimiento.DataSource = null;
-            dgvMovimiento.DataSource = EntradaProductos.ObtenerMovimiento();
-        }
     }
 }

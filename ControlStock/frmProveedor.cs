@@ -27,23 +27,25 @@ namespace ControlStock
         {
             var p = ObtenerDatosFormulario();
 
+            if(ValidarCampos())
+            {
+                    if (modo == "AGREGAR")
+                    {
+                        Proveedor.AgregarProveedor(p);
+                    }
+                    else if (modo == "EDITAR")
+                    {
 
-            if (modo == "AGREGAR")
-            {
-                Proveedor.AgregarProveedor(p);
-            }
-            else if (modo == "EDITAR")
-            {
-             
-                    Proveedor.EditarProveedor(p);
+                        Proveedor.EditarProveedor(p);
+                        ActualizarListaProveedores();
+                    
+                    }
+
+                    LimpiarFormulario();
                     ActualizarListaProveedores();
-
-
+                    BloquearFormulario();
             }
-
-            LimpiarFormulario();
-            ActualizarListaProveedores();
-            BloquearFormulario();
+           
 
 
         }
@@ -168,6 +170,42 @@ namespace ControlStock
         {
             LimpiarFormulario();
             BloquearFormulario();
+        }
+
+        private bool ValidarCampos()
+        {
+            if (String.IsNullOrWhiteSpace(txtNombreProveedor.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío", "Error");
+                txtNombreProveedor.Focus();
+                return false;
+            }
+            if (txtNombreProveedor.Text.Length < 3 || txtNombreProveedor.Text.Length > 30)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombreProveedor.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtDireccion.Text))
+            {
+                MessageBox.Show("La dirección no puede estar vacía", "Error");
+                txtDireccion.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtTelefono.Text))
+            {
+                MessageBox.Show("Agregue un número de telefono", "Error");
+                txtTelefono.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtMail.Text))
+            {
+                MessageBox.Show("El proveedor no posee Email, por favor verifique", "Error");
+                txtMail.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private void tbcPrincipal_SelectedIndexChanged(object sender, EventArgs e)

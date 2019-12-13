@@ -74,17 +74,59 @@ namespace ControlStock
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            pedido.fecha_llegada = dtpFechaLlegada.Value.Date;
-            pedido.proveedor = (Proveedor)cmbProveedor.SelectedItem;
+            if (ValidarCampos())
+            {
+                pedido.fecha_llegada = dtpFechaLlegada.Value.Date;
+                pedido.proveedor = (Proveedor)cmbProveedor.SelectedItem;
 
-            Pedido.Agregar(pedido);
-            MessageBox.Show("El pedido ha sido guardado con éxito");
-            Limpiar();
-            dtgDetallePedido.DataSource = null;
-            dtpFechaLlegada.Value = System.DateTime.Now;
-            cmbProveedor.SelectedItem = null;
-            pedido = new Pedido();
+                Pedido.Agregar(pedido);
+                MessageBox.Show("El pedido ha sido guardado con éxito");
+                Limpiar();
+                dtgDetallePedido.DataSource = null;
+                dtpFechaLlegada.Value = System.DateTime.Now;
+                cmbProveedor.SelectedItem = null;
+                pedido = new Pedido();
+            }
         }
+
+
+        private bool ValidarCampos()
+        {
+          
+            var fechaIncorrecta = new DateTime(2100, 1, 1);
+
+            if (dtpFechaLlegada.Value < DateTime.Now || dtpFechaLlegada.Value > DateTime.Parse("01/01/2100") || dtpFechaLlegada.Value > fechaIncorrecta)
+            {
+                MessageBox.Show("Por favor ingrese una fecha de llegada correcta", "Error");
+                dtpFechaLlegada.Focus();
+                return false;
+            }
+
+            if (cmbProducto.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor seleccione una producto", "Error");
+                cmbProducto.Focus();
+                return false;
+            }
+
+            var pro = (Proveedor)cmbProveedor.SelectedItem;
+            if (pro == null)
+            {
+                MessageBox.Show("Por favor seleccione un Proveedor", "Error");
+                cmbProveedor.Focus();
+                return false;
+            }
+
+            if (String.IsNullOrWhiteSpace(pro.Email))
+            {
+                MessageBox.Show("El proveedor no posee Email, por favor verifique", "Error");
+                cmbProveedor.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {

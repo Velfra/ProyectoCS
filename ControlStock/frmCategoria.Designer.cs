@@ -58,22 +58,19 @@
             this.tbcCategoria.Controls.Add(this.tbpConsulta);
             this.tbcCategoria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbcCategoria.Location = new System.Drawing.Point(0, 0);
-            this.tbcCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbcCategoria.Name = "tbcCategoria";
             this.tbcCategoria.SelectedIndex = 0;
-            this.tbcCategoria.Size = new System.Drawing.Size(525, 375);
+            this.tbcCategoria.Size = new System.Drawing.Size(700, 462);
             this.tbcCategoria.TabIndex = 0;
-            this.tbcCategoria.SelectedIndexChanged += new System.EventHandler(this.tbcCategoria_SelectedIndexChanged);
             // 
             // tbpABM
             // 
             this.tbpABM.Controls.Add(this.groupBox2);
             this.tbpABM.Controls.Add(this.groupBox1);
-            this.tbpABM.Location = new System.Drawing.Point(4, 22);
-            this.tbpABM.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpABM.Location = new System.Drawing.Point(4, 25);
             this.tbpABM.Name = "tbpABM";
-            this.tbpABM.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbpABM.Size = new System.Drawing.Size(517, 349);
+            this.tbpABM.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpABM.Size = new System.Drawing.Size(692, 433);
             this.tbpABM.TabIndex = 0;
             this.tbpABM.Text = "Categorias";
             this.tbpABM.UseVisualStyleBackColor = true;
@@ -83,21 +80,18 @@
             this.groupBox2.Controls.Add(this.btnEliminar);
             this.groupBox2.Controls.Add(this.btnModificar);
             this.groupBox2.Controls.Add(this.btnAgregar);
-            this.groupBox2.Location = new System.Drawing.Point(326, 45);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(434, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(137, 245);
+            this.groupBox2.Size = new System.Drawing.Size(183, 301);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Procesos";
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(40, 103);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Location = new System.Drawing.Point(54, 127);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(61, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(81, 35);
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -105,10 +99,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(40, 167);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificar.Location = new System.Drawing.Point(54, 206);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(61, 28);
+            this.btnModificar.Size = new System.Drawing.Size(81, 35);
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -116,10 +109,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(40, 41);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Location = new System.Drawing.Point(54, 51);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(61, 28);
+            this.btnAgregar.Size = new System.Drawing.Size(81, 35);
             this.btnAgregar.TabIndex = 11;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -134,21 +126,18 @@
             this.groupBox1.Controls.Add(this.lblDireccion);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.lblProveedor);
-            this.groupBox1.Location = new System.Drawing.Point(16, 45);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(21, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(269, 245);
+            this.groupBox1.Size = new System.Drawing.Size(359, 301);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Categoria";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(179, 188);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Location = new System.Drawing.Point(239, 232);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(61, 28);
+            this.btnCancelar.Size = new System.Drawing.Size(81, 35);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -156,10 +145,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(99, 188);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Location = new System.Drawing.Point(132, 232);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(61, 28);
+            this.btnLimpiar.Size = new System.Drawing.Size(81, 35);
             this.btnLimpiar.TabIndex = 9;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -167,10 +155,9 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(13, 188);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardar.Location = new System.Drawing.Point(17, 232);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(61, 28);
+            this.btnGuardar.Size = new System.Drawing.Size(81, 35);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -178,49 +165,44 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(80, 92);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescripcion.Location = new System.Drawing.Point(106, 113);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(146, 54);
+            this.txtDescripcion.Size = new System.Drawing.Size(194, 65);
             this.txtDescripcion.TabIndex = 3;
             // 
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(14, 89);
-            this.lblDireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDireccion.Location = new System.Drawing.Point(18, 109);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(63, 13);
+            this.lblDireccion.Size = new System.Drawing.Size(82, 17);
             this.lblDireccion.TabIndex = 2;
             this.lblDireccion.Text = "Descripcion";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(80, 49);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre.Location = new System.Drawing.Point(106, 60);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(146, 20);
+            this.txtNombre.Size = new System.Drawing.Size(194, 22);
             this.txtNombre.TabIndex = 1;
             // 
             // lblProveedor
             // 
             this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Location = new System.Drawing.Point(14, 49);
-            this.lblProveedor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProveedor.Location = new System.Drawing.Point(18, 60);
             this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(44, 13);
+            this.lblProveedor.Size = new System.Drawing.Size(58, 17);
             this.lblProveedor.TabIndex = 0;
             this.lblProveedor.Text = "Nombre";
             // 
             // tbpConsulta
             // 
             this.tbpConsulta.Controls.Add(this.lstCategoria);
-            this.tbpConsulta.Location = new System.Drawing.Point(4, 22);
-            this.tbpConsulta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbpConsulta.Location = new System.Drawing.Point(4, 25);
             this.tbpConsulta.Name = "tbpConsulta";
-            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbpConsulta.Size = new System.Drawing.Size(517, 349);
+            this.tbpConsulta.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpConsulta.Size = new System.Drawing.Size(692, 433);
             this.tbpConsulta.TabIndex = 1;
             this.tbpConsulta.Text = "Consulta";
             this.tbpConsulta.UseVisualStyleBackColor = true;
@@ -229,21 +211,20 @@
             // 
             this.lstCategoria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstCategoria.FormattingEnabled = true;
-            this.lstCategoria.Location = new System.Drawing.Point(2, 2);
-            this.lstCategoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstCategoria.ItemHeight = 16;
+            this.lstCategoria.Location = new System.Drawing.Point(3, 3);
             this.lstCategoria.Name = "lstCategoria";
-            this.lstCategoria.Size = new System.Drawing.Size(513, 345);
+            this.lstCategoria.Size = new System.Drawing.Size(686, 427);
             this.lstCategoria.TabIndex = 0;
             this.lstCategoria.DoubleClick += new System.EventHandler(this.lstCategoria_DoubleClick);
             // 
             // frmCategoria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 375);
+            this.ClientSize = new System.Drawing.Size(700, 462);
             this.Controls.Add(this.tbcCategoria);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Categoria";

@@ -19,16 +19,20 @@ namespace ControlStock
             InitializeComponent();
         }
 
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var p = ObtenerDatosFormulario();
 
-            if (modo == "AGREGAR")
+         if (ValidarCampos())
+           { 
+                if (modo == "AGREGAR")
             {
                 Categoria.AgregarCategoria(p);
             }
             else if (modo == "EDITAR")
             {
+
                 if (this.lstCategoria.SelectedItems.Count == 0)
                 {
                     MessageBox.Show("Favor seleccione una fila");
@@ -41,18 +45,24 @@ namespace ControlStock
                     ActualizarListaCategorias();
                 }
 
+
             }
 
             LimpiarFormulario();
             ActualizarListaCategorias();
             BloquearFormulario();
+         }
+
         }
+
 
         private Categoria ObtenerDatosFormulario()
         {
             Categoria categoria = new Categoria();
             categoria.Nombre = txtNombre.Text;
             categoria.Descripcion = txtDescripcion.Text;
+            
+
             return categoria;
 
         }
@@ -84,6 +94,38 @@ namespace ControlStock
         }
 
 
+        private bool ValidarCampos()
+        {
+            if (String.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío", "Error");
+                txtNombre.Focus();
+                return false;
+            }
+            if (txtNombre.Text.Length < 3 || txtNombre.Text.Length > 30)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombre.Focus();
+                return false;
+            }
+            if (String.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("La descripción no puede estar vacía", "Error");
+                txtDescripcion.Focus();
+                return false;
+            }
+            if (txtDescripcion.Text.Length < 3 || txtDescripcion.Text.Length > 140)
+            {
+                MessageBox.Show("La longitud de caracteres es incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDescripcion.Focus();
+                return false;
+            }
+
+
+            return true;
+        }
+
+
         private void LimpiarFormulario()
         {
             txtNombre.Text = "";
@@ -110,7 +152,6 @@ namespace ControlStock
         {
             ActualizarListaCategorias();
             BloquearFormulario();
-            
         }
 
         private void ActualizarListaCategorias()
@@ -175,11 +216,6 @@ namespace ControlStock
             }
 
             tbcCategoria.SelectedIndex = 0;
-        }
-
-        private void tbcCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ActualizarListaCategorias();
         }
     }
 }
